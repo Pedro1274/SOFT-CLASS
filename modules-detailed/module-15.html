@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 15: Portfólio e GitHub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #24292e, #2b3137);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .module-info {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .info-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        h2 {
+            color: #24292e;
+            margin: 25px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #eaecef;
+        }
+        
+        h3 {
+            color: #2b3137;
+            margin: 20px 0 10px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .highlight {
+            background-color: #f6f8fa;
+            border-left: 4px solid #24292e;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .example-box {
+            background-color: #f9f9f9;
+            border: 1px solid #e1e1e1;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .portfolio-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .benefit-card {
+            background: white;
+            border: 2px solid #2b3137;
+            border-radius: 8px;
+            padding: 20px;
+            transition: transform 0.3s;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .benefit-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .benefit-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+            text-align: center;
+        }
+        
+        .github-setup {
+            background-color: #f6f8fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .setup-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .setup-step {
+            display: flex;
+            align-items: flex-start;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+        }
+        
+        .step-number {
+            background: #28a745;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .project-structure {
+            background-color: #e8f4fc;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .structure-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .structure-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .structure-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .publishing-section {
+            background-color: #fef9e7;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .publishing-checklist {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        
+        .check-icon {
+            color: #28a745;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .portfolio-building {
+            background-color: #e8f6f3;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .portfolio-components {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .component-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .component-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .professional-presence {
+            background-color: #f4ecf7;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .tip-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .tip-icon {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #24292e;
+        }
+        
+        .video-section {
+            background-color: #f6f8fa;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        
+        .video-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .video-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+        
+        .video-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .video-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+        
+        .video-desc {
+            font-size: 0.9rem;
+            color: #555;
+        }
+        
+        .metadata {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        
+        .metadata-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .metadata-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .metadata-label {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .metadata-value {
+            color: #555;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            border-top: 1px solid #eaecef;
+            margin-top: 30px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #24292e;
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .code-example {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        
+        @media (max-width: 768px) {
+            .module-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .video-list, .portfolio-benefits, .structure-grid, .portfolio-components, .tips-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .setup-steps {
+                gap: 20px;
+            }
+        }
+
+        .navigation {
+            background: #34495e;
+            padding: 15px 0;
+            border-bottom: 1px solid #2c3e50;
+        }
+
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+        }
+
+        .nav-link {
+            color: #ecf0f1;
+            text-decoration: none;
+            padding: 8px 16px;
+            border: 1px solid #ecf0f1;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .nav-link:hover {
+            background: #ecf0f1;
+            color: #2c3e50;
+        }
+
+        .nav-info {
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+
+        .nav-module {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px 12px;
+            border-radius: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MÓDULO 15: Portfólio e GitHub</h1>
+            <div class="module-info">
+                <div class="info-item">Duração: ~45 minutos</div>
+                <div class="info-item">Dificuldade: Avançado</div>
+                <div class="info-item">Público: Estudantes de tecnologia</div>
+            </div>
+        </header>
+
+        <nav class="navigation">
+            <div class="nav-container">
+                <a href="../index.html" class="nav-link">
+                    ← Voltar para a Página Inicial
+                </a>
+                <div class="nav-info">
+                    <span class="nav-module">Módulo 15</span>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="content">
+            <h2>O que é um Portfólio e Por Que Ter Um</h2>
+            <p>Um portfólio de desenvolvimento é uma coleção organizada dos seus projetos, habilidades e conquistas que demonstra suas capacidades técnicas para empregadores, clientes e a comunidade de tecnologia.</p>
+            
+            <div class="highlight">
+                <p><strong>Analogia:</strong> Pense no seu portfólio como um "catálogo vivo" das suas habilidades. Assim como um arquiteto mostra maquetes e plantas de projetos concluídos, você mostra código, aplicações e soluções que desenvolveu. É sua principal ferramenta de marketing profissional!</p>
+            </div>
+            
+            <div class="portfolio-benefits">
+                <div class="benefit-card">
+                    <div class="benefit-icon">💼</div>
+                    <div class="benefit-title">Destaque no Mercado</div>
+                    <p>86% dos recrutadores de tech verificam portfólios antes de entrevistas</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">🚀</div>
+                    <div class="benefit-title">Aprendizado Prático</div>
+                    <p>Projetos reais solidificam conhecimento e mostram evolução</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">🌐</div>
+                    <div class="benefit-title">Networking Global</div>
+                    <p>Conecta você com desenvolvedores e oportunidades mundiais</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">📈</div>
+                    <div class="benefit-title">Carreira Acelerada</div>
+                    <p>Profissionais com portfólio conseguem melhores posições e salários</p>
+                </div>
+            </div>
+            
+            <h3>O que um bom portfólio demonstra:</h3>
+            <ul>
+                <li><strong>Habilidades técnicas:</strong> Linguagens, frameworks e ferramentas que você domina</li>
+                <li><strong>Capacidade de entrega:</strong> Projetos completos e funcionais</li>
+                <li><strong>Qualidade de código:</strong> Organização, boas práticas e documentação</li>
+                <li><strong>Processo de trabalho:</strong> Como você planeja, desenvolve e testa</li>
+                <li><strong>Evolução profissional:</strong> Seu crescimento e aprendizado contínuo</li>
+            </ul>
+            
+            <h2>Criando Sua Conta no GitHub</h2>
+            <p>O GitHub é a plataforma essencial para desenvolvedores, funcionando como seu "cartão de visitas digital" e repositório de todos os seus projetos.</p>
+            
+            <div class="github-setup">
+                <h3>Passo a Passo para Criar uma Conta Profissional:</h3>
+                
+                <div class="setup-steps">
+                    <div class="setup-step">
+                        <div class="step-number">1</div>
+                        <div>
+                            <strong>Escolha um Nome de Usuário Profissional</strong>
+                            <p>Prefira: nome.sobrenome ou variação profissional. Evite apelidos informais.</p>
+                            <p><em>Exemplos bons: maria-silva, carlos.oliveira.dev</em></p>
+                        </div>
+                    </div>
+                    
+                    <div class="setup-step">
+                        <div class="step-number">2</div>
+                        <div>
+                            <strong>Use um Email Profissional</strong>
+                            <p>Prefira email pessoal em vez de email temporário ou da faculdade.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="setup-step">
+                        <div class="step-number">3</div>
+                        <div>
+                            <strong>Complete seu Perfil</strong>
+                            <p>Foto profissional, bio descritiva, localização e website se tiver.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="setup-step">
+                        <div class="step-number">4</div>
+                        <div>
+                            <strong>Ative a Verificação em Duas Etapas</strong>
+                            <p>Segurança é crucial - proteja sua conta e seus projetos.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="setup-step">
+                        <div class="step-number">5</div>
+                        <div>
+                            <strong>Configure o GitHub Pages</strong>
+                            <p>Para hospedar seu portfólio gratuitamente.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="example-box">
+                    <p><strong>Exemplo de Bio Eficaz:</strong></p>
+                    <p>"Desenvolvedor Full-Stack JavaScript | React.js • Node.js • PostgreSQL | Apaixonado por criar soluções que impactam milhares de usuários | Open Source Contributor"</p>
+                </div>
+            </div>
+            
+            <h2>Estruturando Projetos no GitHub</h2>
+            <p>A organização dos seus repositórios é tão importante quanto o código em si. Uma estrutura clara demonstra profissionalismo e facilita a compreensão dos recrutadores.</p>
+            
+            <div class="project-structure">
+                <h3>Elementos Essenciais de um Repositório Bem Estruturado:</h3>
+                
+                <div class="structure-grid">
+                    <div class="structure-item">
+                        <div class="structure-icon">📖</div>
+                        <strong>README.md</strong>
+                        <p>Cartão de visitas do projeto</p>
+                    </div>
+                    
+                    <div class="structure-item">
+                        <div class="structure-icon">📋</div>
+                        <strong>.gitignore</strong>
+                        <p>Arquivos a serem ignorados</p>
+                    </div>
+                    
+                    <div class="structure-item">
+                        <div class="structure-icon">📝</div>
+                        <strong>LICENSE</strong>
+                        <p>Licença de uso do código</p>
+                    </div>
+                    
+                    <div class="structure-item">
+                        <div class="structure-icon">🚀</div>
+                        <strong>Documentação</strong>
+                        <p>Como usar e contribuir</p>
+                    </div>
+                </div>
+                
+                <h3>Estrutura Recomendada para Projetos:</h3>
+                
+                <div class="code-example">
+                    meu-projeto-incrivel/<br>
+                    ├── README.md                 # Documentação principal<br>
+                    ├── .gitignore               # Arquivos ignorados<br>
+                    ├── LICENSE                  # Licença MIT ou similar<br>
+                    ├── src/                     # Código fonte<br>
+                    │   ├── components/          # Componentes reutilizáveis<br>
+                    │   ├── utils/               # Funções utilitárias<br>
+                    │   └── tests/               # Testes automatizados<br>
+                    ├── docs/                    # Documentação adicional<br>
+                    ├── public/                  # Arquivos estáticos<br>
+                    └── package.json             # Dependências e scripts
+                </div>
+                
+                <h3>Conteúdo do README.md Ideal:</h3>
+                <ul>
+                    <li><strong>Título e descrição clara</strong> - O que o projeto faz</li>
+                    <li><strong>Badges</strong> - Status do build, cobertura de testes, versão</li>
+                    <li><strong>Demonstração</strong> - Screenshots, gifs ou link para demo</li>
+                    <li><strong>Tecnologias</strong> - Stack utilizada no projeto</li>
+                    <li><strong>Instalação</strong> - Como configurar o projeto localmente</li>
+                    <li><strong>Uso</strong> - Como usar a aplicação</li>
+                    <li><strong>Contribuição</strong> - Como outras pessoas podem contribuir</li>
+                </ul>
+            </div>
+            
+            <h2>Publicando Projetos</h2>
+            <p>Publicar projetos no GitHub vai além de simplesmente fazer push do código. Envolve preparação, documentação e apresentação profissional.</p>
+            
+            <div class="publishing-section">
+                <h3>Checklist Antes de Publicar:</h3>
+                
+                <div class="publishing-checklist">
+                    <div class="check-item">
+                        <span class="check-icon">✓</span>
+                        <div>
+                            <strong>Código limpo e organizado</strong>
+                            <p>Remova comentários desnecessários, console.logs de debug e código morto</p>
+                        </div>
+                    </div>
+                    
+                    <div class="check-item">
+                        <span class="check-icon">✓</span>
+                        <div>
+                            <strong>README completo</strong>
+                            <p>Inclua todos os elementos essenciais mencionados anteriormente</p>
+                        </div>
+                    </div>
+                    
+                    <div class="check-item">
+                        <span class="check-icon">✓</span>
+                        <div>
+                            <strong>Commit history organizada</strong>
+                            <p>Commits com mensagens claras e descritivas</p>
+                        </div>
+                    </div>
+                    
+                    <div class="check-item">
+                        <span class="check-icon">✓</span>
+                        <div>
+                            <strong>Demo funcionando</strong>
+                            <p>Link para aplicação deployada ou instruções para executar localmente</p>
+                        </div>
+                    </div>
+                    
+                    <div class="check-item">
+                        <span class="check-icon">✓</span>
+                        <div>
+                            <strong>Licença definida</strong>
+                            <p>Escolha uma licença apropriada (MIT é uma boa opção para projetos pessoais)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>Fluxo de Publicação Profissional:</h3>
+                <ol>
+                    <li><strong>Preparação local:</strong> Clean up do código e documentação</li>
+                    <li><strong>Commit final:</strong> Mensagem descritiva (ex: "docs: update README with deployment instructions")</li>
+                    <li><strong>Criação do repositório:</strong> No GitHub, com descrição e topics</li>
+                    <li><strong>Push do código:</strong> Primeiro push para o repositório remoto</li>
+                    <li><strong>Configuração:</strong> README, description, website, topics</li>
+                    <li><strong>Deploy da demo:</strong> Netlify, Vercel, GitHub Pages ou similar</li>
+                    <li><strong>Teste final:</strong> Verifique se tudo está funcionando corretamente</li>
+                </ol>
+                
+                <div class="highlight">
+                    <p><strong>Dica Pro:</strong> Use GitHub Topics para aumentar a visibilidade dos seus projetos. Adicione tags relevantes como: javascript, react, nodejs, portfolio, web-development, fullstack</p>
+                </div>
+            </div>
+            
+            <h2>Montando Seu Portfólio Pessoal</h2>
+            <p>Seu portfólio pessoal é o hub central que conecta todos os seus projetos e conta sua história como desenvolvedor.</p>
+            
+            <div class="portfolio-building">
+                <h3>Componentes Essenciais de um Portfólio Eficaz:</h3>
+                
+                <div class="portfolio-components">
+                    <div class="component-card">
+                        <div class="component-icon">👤</div>
+                        <strong>Sobre Mim</strong>
+                        <p>Quem você é e o que busca</p>
+                    </div>
+                    
+                    <div class="component-card">
+                        <div class="component-icon">💻</div>
+                        <strong>Projetos</strong>
+                        <p>Destaque dos melhores trabalhos</p>
+                    </div>
+                    
+                    <div class="component-card">
+                        <div class="component-icon">🛠️</div>
+                        <strong>Habilidades</strong>
+                        <p>Tecnologias e ferramentas</p>
+                    </div>
+                    
+                    <div class="component-card">
+                        <div class="component-icon">📞</div>
+                        <strong>Contato</strong>
+                        <p>Como entrar em contato</p>
+                    </div>
+                </div>
+                
+                <h3>Estrutura Recomendada para Site de Portfólio:</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Seção</th>
+                            <th>Conteúdo</th>
+                            <th>Dicas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Hero Section</strong></td>
+                            <td>Apresentação rápida + call-to-action</td>
+                            <td>Foto profissional, título claro, links para redes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sobre</strong></td>
+                            <td>Sua história e objetivos</td>
+                            <td>Seja autêntico, mostre personalidade</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Projetos</strong></td>
+                            <td>3-6 melhores projetos</td>
+                            <td>Imagem, descrição, tecnologias, links</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Habilidades</strong></td>
+                            <td>Stack técnica e soft skills</td>
+                            <td>Organize por categoria, mostre progresso</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Contato</strong></td>
+                            <td>Formulário e informações</td>
+                            <td>Links para GitHub, LinkedIn, email</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="example-box">
+                    <p><strong>Exemplo de Card de Projeto Eficaz:</strong></p>
+                    <ul>
+                        <li><strong>Imagem/Nome:</strong> TaskFlow App</li>
+                        <li><strong>Descrição:</strong> Sistema de gerenciamento de tarefas com drag-and-drop</li>
+                        <li><strong>Tecnologias:</strong> React, Node.js, MongoDB, Socket.io</li>
+                        <li><strong>Links:</strong> [Demo] • [Código] • [Case Study]</li>
+                        <li><strong>Destaque:</strong> "Reduziu tempo de organização de tarefas em 40% nos testes de usuário"</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h2>Dicas para Presença Profissional</h2>
+            <p>Sua presença online vai além do código. É sobre construir uma marca pessoal consistente e profissional.</p>
+            
+            <div class="professional-presence">
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <div class="tip-icon">🔗</div>
+                        <strong>Consistência entre Plataformas</strong>
+                        <p>Use mesma foto, bio e tom de voz no GitHub, LinkedIn, Twitter e outros canais.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <div class="tip-icon">💬</div>
+                        <strong>Participe da Comunidade</strong>
+                        <p>Contribua em projetos open source, responda issues, participe de discussões.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <div class="tip-icon">📊</div>
+                        <strong>Mantenha Atividade Constante</strong>
+                        <p>Commits regulares mostram engajamento e evolução contínua.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <div class="tip-icon">🎯</div>
+                        <strong>Especialize-se com Propósito</strong>
+                        <p>Tenha projetos que mostrem profundidade em tecnologias específicas.</p>
+                    </div>
+                </div>
+                
+                <h3>Métricas que Recrutadores Observam:</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Métrica</th>
+                            <th>O que Mostra</th>
+                            <th>Como Melhorar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Contribuições no Gráfico</strong></td>
+                            <td>Consistência e frequência de trabalho</td>
+                            <td>Commits regulares, mesmo em projetos pequenos</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Repositórios Pinned</strong></td>
+                            <td>Seus melhores projetos</td>
+                            <td>Selecione 6 projetos que representem suas habilidades</td>
+                        </tr>
+                        <tr>
+                            <td><strong>READMEs Completos</strong></td>
+                            <td>Capacidade de documentação</td>
+                            <td>Invista tempo em READMEs detalhados e visuais</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Issues e Pull Requests</strong></td>
+                            <td>Colaboração e trabalho em equipe</td>
+                            <td>Participe de projetos open source</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Green Squares</strong></td>
+                            <td>Dedicação e constância</td>
+                            <td>Mantenha uma rotina de coding consistente</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="highlight">
+                    <p><strong>Lembre-se:</strong> Qualidade sobre quantidade. Um portfólio com 3 projetos incríveis e bem documentados vale mais que 10 projetos mediocres. Foque em criar projetos que resolvam problemas reais e demonstrem suas habilidades de forma clara.</p>
+                </div>
+                
+                <h3>Checklist Final do Portfólio Perfeito:</h3>
+                <ul>
+                    <li>✅ GitHub profile completo e profissional</li>
+                    <li>✅ 3-6 projetos destacados com READMEs excelentes</li>
+                    <li>✅ Site de portfólio com projetos e informações de contato</li>
+                    <li>✅ LinkedIn atualizado e alinhado com o GitHub</li>
+                    <li>✅ Atividade consistente (contributions graph verde)</li>
+                    <li>✅ Projetos com demonstrações funcionais</li>
+                    <li>✅ Código limpo, organizado e bem documentado</li>
+                </ul>
+            </div>
+
+            <div style="text-align: center; margin: 30px 0;">
+                <a href="../quizzes-detailed/quiz-module-15.html" style="display: inline-block; background: #27ae60; color: white; padding: 12px 25px; border-radius: 5px; text-decoration: none; font-weight: bold;">
+                    Fazer Quiz do Módulo 15
+                </a>
+            </div>
+            
+            <div class="video-section">
+                <h2>Recursos em Vídeo</h2>
+                <p>Para complementar seu aprendizado, recomendamos estes vídeos:</p>
+                
+                <div class="video-list">
+                    <div class="video-item">
+                        <div class="video-title">GitHub para Portfólio: Do Básico ao Avançado</div>
+                        <div class="video-desc">Como transformar seu GitHub em um portfólio impressionante.</div>
+                    </div>
+                    
+                    <div class="video-item">
+                        <div class="video-title">README.md que Atrai Recrutadores</div>
+                        <div class="video-desc">Técnicas para criar documentação que destaca seus projetos.</div>
+                    </div>
+                    
+                    <div class="video-item">
+                        <div class="video-title">Portfólio que Conseguiu Vagas</div>
+                        <div class="video-desc">Casos reais de portfólios que impressionaram empresas.</div>
+                    </div>
+                    
+                    <div class="video-item">
+                        <div class="video-title">GitHub Pages: Seu Portfólio Grátis</div>
+                        <div class="video-desc">Como hospedar seu site de portfólio gratuitamente no GitHub.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="metadata">
+                <h2>Metadados do Módulo</h2>
+                <div class="metadata-grid">
+                    <div class="metadata-item">
+                        <span class="metadata-label">Título do Módulo:</span>
+                        <span class="metadata-value">Portfólio e GitHub</span>
+                    </div>
+                    
+                    <div class="metadata-item">
+                        <span class="metadata-label">Duração Estimada:</span>
+                        <span class="metadata-value">45 minutos</span>
+                    </div>
+                    
+                    <div class="metadata-item">
+                        <span class="metadata-label">Nível de Dificuldade:</span>
+                        <span class="metadata-value">Avançado</span>
+                    </div>
+                    
+                    <div class="metadata-item">
+                        <span class="metadata-label">Pré-requisitos:</span>
+                        <span class="metadata-value">Módulo 14: Carreira em Desenvolvimento</span>
+                    </div>
+                    
+                    <div class="metadata-item">
+                        <span class="metadata-label">Objetivos de Aprendizado:</span>
+                        <span class="metadata-value">Compreender a importância do portfólio, criar conta profissional no GitHub, estruturar projetos eficazmente, publicar projetos com qualidade, montar portfólio pessoal e desenvolver presença profissional online</span>
+                    </div>
+                    
+                    <div class="metadata-item">
+                        <span class="metadata-label">Palavras-chave:</span>
+                        <span class="metadata-value">portfólio, GitHub, projetos, README, documentação, carreira, desenvolvimento, presença online, recrutamento</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Módulo 15 - Portfólio e GitHub | Curso de Iniciação em Tecnologia</p>
+        </footer>
+    </div>
+</body>
+</html>

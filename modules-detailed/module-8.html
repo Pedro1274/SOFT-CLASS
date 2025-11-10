@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 8: Implementação (Codificação)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #2980b9, #3498db);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .module-info {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .info-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        h2 {
+            color: #2980b9;
+            margin: 25px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #eaecef;
+        }
+        
+        h3 {
+            color: #3498db;
+            margin: 20px 0 10px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .highlight {
+            background-color: #e8f4fc;
+            border-left: 4px solid #2980b9;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .example-box {
+            background-color: #f9f9f9;
+            border: 1px solid #e1e1e1;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .code-example {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        
+        .requirement-to-code {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .step-card {
+            background: white;
+            border: 2px solid #3498db;
+            border-radius: 8px;
+            padding: 20px;
+            transition: transform 0.3s;
+        }
+        
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .step-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .step-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+            text-align: center;
+        }
+        
+        .best-practices {
+            background-color: #e8f6f3;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .practice-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid #27ae60;
+        }
+        
+        .solid-principles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .principle-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e1e1e1;
+        }
+        
+        .principle-letter {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2980b9;
+            margin-bottom: 10px;
+        }
+        
+        .api-section {
+            background-color: #fef9e7;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .git-flow {
+            background-color: #f4ecf7;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .git-command {
+            background: #2c3e50;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .video-section {
+            background-color: #e8f4fc;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        
+        .video-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .video-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+        
+        .video-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .video-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+        
+        .video-desc {
+            font-size: 0.9rem;
+            color: #555;
+        }
+        
+        .metadata {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        
+        .metadata-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .metadata-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .metadata-label {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .metadata-value {
+            color: #555;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            border-top: 1px solid #eaecef;
+            margin-top: 30px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #2980b9;
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        @media (max-width: 768px) {
+            .module-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .video-list, .requirement-to-code, .solid-principles {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .navigation {
+            background: #34495e;
+            padding: 15px 0;
+            border-bottom: 1px solid #2c3e50;
+        }
+
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+        }
+
+        .nav-link {
+            color: #ecf0f1;
+            text-decoration: none;
+            padding: 8px 16px;
+            border: 1px solid #ecf0f1;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .nav-link:hover {
+            background: #ecf0f1;
+            color: #2c3e50;
+        }
+
+        .nav-info {
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+
+        .nav-module {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px 12px;
+            border-radius: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MÓDULO 8: Implementação (Codificação)</h1>
+            <div class="module-info">
+                <div class="info-item">Duração: ~45 minutos</div>
+                <div class="info-item">Dificuldade: Intermediário</div>
+                <div class="info-item">Público: Estudantes de tecnologia</div>
+            </div>
+        </header>
+
+        <nav class="navigation">
+            <div class="nav-container">
+                <a href="../index.html" class="nav-link">
+                    ← Voltar para a Página Inicial
+                </a>
+                <div class="nav-info">
+                    <span class="nav-module">Módulo 8</span>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="content">
+            <h2>Do Requisito ao Código</h2>
+            <p>A implementação é o processo de transformar requisitos e designs em código funcional. É onde a teoria se torna prática e o sistema ganha vida.</p>
+            
+            <div class="highlight">
+                <p><strong>Analogia:</strong> Pense nos requisitos como uma receita de bolo, o design como o molde da forma, e a implementação como o ato de misturar os ingredientes e assar o bolo. Cada etapa é crucial para o resultado final!</p>
+            </div>
+            
+            <div class="requirement-to-code">
+                <div class="step-card">
+                    <div class="step-icon">📋</div>
+                    <div class="step-title">Entendimento do Requisito</div>
+                    <p>Leia e compreenda completamente o que precisa ser implementado. Faça perguntas se algo não estiver claro.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-icon">✏️</div>
+                    <div class="step-title">Planejamento da Solução</div>
+                    <p>Pense na melhor maneira de implementar. Esboce a estrutura, escolha algoritmos e defina interfaces.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-icon">💻</div>
+                    <div class="step-title">Escrita do Código</div>
+                    <p>Implemente a solução seguindo boas práticas. Escreva código limpo, legível e bem estruturado.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-icon">🧪</div>
+                    <div class="step-title">Teste e Refinamento</div>
+                    <p>Teste o código, corrija erros e melhore a implementação. Verifique se atende todos os requisitos.</p>
+                </div>
+            </div>
+            
+            <div class="example-box">
+                <p><strong>Exemplo Prático:</strong> Requisito: "O sistema deve permitir que usuários façam login com email e senha"</p>
+                <ol>
+                    <li>Entender: Login com credenciais válidas</li>
+                    <li>Planejar: Formulário HTML + validação + autenticação</li>
+                    <li>Implementar: Código do formulário e lógica de autenticação</li>
+                    <li>Testar: Verificar login correto, errado, campos vazios</li>
+                </ol>
+            </div>
+            
+            <h2>Boas Práticas de Programação</h2>
+            <p>Boas práticas são convenções e técnicas que tornam o código mais legível, mantível e menos propenso a erros.</p>
+            
+            <div class="best-practices">
+                <div class="practice-item">
+                    <strong>Nomes Significativos</strong>
+                    <p>Use nomes que revelem a intenção. Evite abreviações obscuras.</p>
+                    <div class="code-example">
+                        // ❌ Ruim<br>
+                        int d; // dias? dados? duração?<br>
+                        // ✅ Bom<br>
+                        int diasTrabalhados;
+                    </div>
+                </div>
+                
+                <div class="practice-item">
+                    <strong>Funções Pequenas e Específicas</strong>
+                    <p>Funções devem fazer uma coisa só e fazer bem.</p>
+                    <div class="code-example">
+                        // ❌ Ruim - faz muitas coisas<br>
+                        void processarUsuario() { /* valida, salva, envia email */ }<br>
+                        // ✅ Bom - funções específicas<br>
+                        void validarUsuario() { ... }<br>
+                        void salvarUsuario() { ... }<br>
+                        void enviarEmailBoasVindas() { ... }
+                    </div>
+                </div>
+                
+                <div class="practice-item">
+                    <strong>Comentários Úteis</strong>
+                    <p>Comente o "porquê", não o "o quê". O código deve ser autoexplicativo.</p>
+                    <div class="code-example">
+                        // ❌ Ruim - comenta o óbvio<br>
+                        x = x + 1; // incrementa x<br>
+                        // ✅ Bom - explica a razão<br>
+                        x = x + 1; // compensar o índice que começa em 0
+                    </div>
+                </div>
+                
+                <div class="practice-item">
+                    <strong>Tratamento de Erros</strong>
+                    <p>Sempre lide com possíveis erros de forma elegante.</p>
+                    <div class="code-example">
+                        try {<br>
+                        &nbsp;&nbsp;arquivo = abrirArquivo(nome);<br>
+                        } catch (ErroArquivo e) {<br>
+                        &nbsp;&nbsp;logger.erro("Não foi possível abrir o arquivo");<br>
+                        &nbsp;&nbsp;return null;<br>
+                        }
+                    </div>
+                </div>
+            </div>
+            
+            <h2>Princípios SOLID (Versão Simplificada)</h2>
+            <p>SOLID é um acrônimo para cinco princípios de design orientado a objetos que tornam o software mais compreensível, flexível e mantível.</p>
+            
+            <div class="solid-principles">
+                <div class="principle-card">
+                    <div class="principle-letter">S</div>
+                    <strong>Single Responsibility</strong>
+                    <p>Uma classe deve ter apenas uma razão para mudar. Cada classe faz uma coisa só.</p>
+                    <em>Exemplo: Classe Email só cuida de emails</em>
+                </div>
+                
+                <div class="principle-card">
+                    <div class="principle-letter">O</div>
+                    <strong>Open/Closed</strong>
+                    <p>Entidades devem estar abertas para extensão, mas fechadas para modificação.</p>
+                    <em>Exemplo: Adicionar novo tipo de pagamento sem modificar código existente</em>
+                </div>
+                
+                <div class="principle-card">
+                    <div class="principle-letter">L</div>
+                    <strong>Liskov Substitution</strong>
+                    <p>Classes derivadas devem ser substituíveis por suas classes base.</p>
+                    <em>Exemplo: Qualquer Animal deve poder fazer makeSound()</em>
+                </div>
+                
+                <div class="principle-card">
+                    <div class="principle-letter">I</div>
+                    <strong>Interface Segregation</strong>
+                    <p>Muitas interfaces específicas são melhores que uma interface geral.</p>
+                    <em>Exemplo: Interfaces separadas para Nadador e Voador</em>
+                </div>
+                
+                <div class="principle-card">
+                    <div class="principle-letter">D</div>
+                    <strong>Dependency Inversion</strong>
+                    <p>Dependa de abstrações, não de implementações concretas.</p>
+                    <em>Exemplo: Usar interface BancoDeDados em vez de MySQL específico</em>
+                </div>
+            </div>
+            
+            <div class="example-box">
+                <p><strong>Dica Prática:</strong> Você não precisa aplicar todos os princípios SOLID o tempo todo. Comece com Single Responsibility - é o mais importante e mais fácil de aplicar.</p>
+            </div>
+            
+            <h2>Integração com APIs e Serviços Externos</h2>
+            <p>APIs (Application Programming Interfaces) permitem que sistemas diferentes se comuniquem e compartilhem dados.</p>
+            
+            <div class="api-section">
+                <h3>Tipos Comuns de APIs:</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Uso Comum</th>
+                            <th>Exemplo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>REST API</strong></td>
+                            <td>Comunicação web padrão</td>
+                            <td>Integração com Twitter, GitHub</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Payment API</strong></td>
+                            <td>Processamento de pagamentos</td>
+                            <td>Stripe, PayPal</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Email API</strong></td>
+                            <td>Envio de emails transacionais</td>
+                            <td>SendGrid, Mailchimp</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Maps API</strong></td>
+                            <td>Geolocalização e mapas</td>
+                            <td>Google Maps, MapBox</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>Fluxo Básico de Integração:</h3>
+                <ol>
+                    <li><strong>Obter credenciais:</strong> Registrar na plataforma e obter chaves API</li>
+                    <li><strong>Ler documentação:</strong> Entender endpoints, parâmetros e respostas</li>
+                    <li><strong>Implementar chamada:</strong> Usar bibliotecas HTTP para fazer requests</li>
+                    <li><strong>Tratar respostas:</strong> Processar dados recebidos e tratar erros</li>
+                    <li><strong>Testar thoroughly:</strong> Verificar todos os cenários possíveis</li>
+                </ol>
+                
+                <div class="code-example">
+                    // Exemplo: Chamada API com JavaScript<br>
+                    fetch('https://api.exemplo.com/usuarios')<br>
+                    &nbsp;&nbsp;.then(response => response.json())<br>
+                    &nbsp;&nbsp;.then(data => console.log(data))<br>
+                    &nbsp;&nbsp;.catch(error => console.error('Erro:', error));
+                </div>
+            </div>
+            
+            <h2>Versionamento com Git (Fluxo Básico)</h2>
+            <p>Git é um sistema de controle de versão que permite rastrear mudanças no código e colaborar com outros desenvolvedores.</p>
+            
+            <div class="git-flow">
+                <h3>Comandos Git Essenciais:</h3>
+                
+                <div class="git-command">git init</div>
+                <p>Inicializa um repositório Git em um projeto novo</p>
+                
+                <div class="git-command">git add .</div>
+                <p>Prepara todas as mudanças para serem commitadas</p>
+                
+                <div class="git-command">git commit -m "mensagem descritiva"</div>
+                <p>Salva as mudanças no histórico com uma mensagem</p>
+                
+                <div class="git-command">git push origin main</div>
+                <p>Envia as mudanças para o repositório remoto</p>
+                
+                <div class="git-command">git pull</div>
+                <p>Baixa as mudanças mais recentes do repositório</p>
+                
+                <h3>Fluxo de Trabalho Básico:</h3>
+                <ol>
+                    <li><strong>Trabalhar:</strong> Fazer mudanças no código</li>
+                    <li><strong>Verificar:</strong> git status para ver o que mudou</li>
+                    <li><strong>Preparar:</strong> git add . para incluir mudanças</li>
+                    <li><strong>Salvar:</strong> git commit -m "descrição"</li>
+                    <li><strong>Compartilhar:</strong> git push para enviar ao repositório</li>
+                </ol>
+                
+                <div class="highlight">
+                    <p><strong>Boas Práticas Git:</strong></p>
+                    <ul>
+                        <li>Commits pequenos e frequentes</li>
+                        <li>Mensagens de commit claras e descritivas</li>
+                        <li>Nunca commitar senhas ou chaves API</li>
+                        <li>Sempre fazer pull antes de começar a trabalhar</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin: 30px 0;">
+                <a href="../quizzes-detailed/quiz-module-8.html" style="display: inline-block; background: #27ae60; color: white; padding: 12px 25px; border-radius: 5px; text-decoration: none; font-weight: bold;">
+                    Fazer Quiz do Módulo 8
+                </a>
+            </div>
+            
+            <div class="video-section">
+                <h2>Recursos em Vídeo</h2>
+                <p>Para complementar seu aprendizado, recomendamos estes vídeos:</p>
+                
+                <div class="video-list">
+                    <div class="video-item">
+                        <div class="video-title">Clean Code: Escrevendo Código de Qualidade</div>
+                        <div class="video-desc">Princípios práticos para escrever código limpo e mantível.</div>
+                    </div>
+                    
+                    <div class="video-item">
+                        <div class="video-title">SOLID para Iniciantes</div>
+                        <div class="video-desc">Explicação simplificada dos princípios SOLID com exemplos.</div>
+                    </div>
+                    
+                    <div class="video-item">
+                        <div class="video-title">Integração com APIs REST</div>
+                        <div class="video-desc">Como consumir APIs externas em seus projetos.</div>
+                    </div>
+                    
+                    <div class="video-item">
+                        <div class="video-title">Git e GitHub para Iniciantes</div>
+                        <div class="video-desc">Tutorial completo de versionamento para quem está começando.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="metadata">
+                <h2>Metadados do Módulo</h2>
+                <div class="metadata-grid">
+                    <div class="metadata-item">
+                        <span class="metadata-label">Título do Módulo:</span>
+                        <span class="metadata-value">Implementação (Codificação)</span>
+                    </div>
+                    
+                    <div class="metadata-item">
+                        <span class="metadata-label">Duração Estimada:</span>
+                        <span class="metadata-value">45 minutos</span>
+                    </div>
+                    
+                    <div class="metadata-item">
+                        <span class="metadata-label">Nível de Dificuldade:</span>
+                        <span class="metadata-value">Intermediário</span>
+                    </div>
+                    
+                    <div class="metadata-item">
+                        <span class="metadata-label">Pré-requisitos:</span>
+                        <span class="metadata-value">Módulo 7: Planejamento do Projeto</span>
+                    </div>
+                    
+                    <div class="metadata-item">
+                        <span class="metadata-label">Objetivos de Aprendizado:</span>
+                        <span class="metadata-value">Compreender o processo de transformar requisitos em código, aplicar boas práticas de programação, conhecer princípios SOLID, integrar com APIs externas e usar Git para versionamento</span>
+                    </div>
+                    
+                    <div class="metadata-item">
+                        <span class="metadata-label">Palavras-chave:</span>
+                        <span class="metadata-value">implementação, codificação, boas práticas, SOLID, APIs, Git, versionamento, clean code</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Módulo 8 - Implementação (Codificação) | Curso de Iniciação em Tecnologia</p>
+        </footer>
+    </div>
+</body>
+</html>

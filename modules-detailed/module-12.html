@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 12: Treinamento e Documentação</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #34495e, #2c3e50);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .module-info {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .info-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        h2 {
+            color: #34495e;
+            margin: 25px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #eaecef;
+        }
+        
+        h3 {
+            color: #2c3e50;
+            margin: 20px 0 10px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .highlight {
+            background-color: #ecf0f1;
+            border-left: 4px solid #34495e;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .example-box {
+            background-color: #f9f9f9;
+            border: 1px solid #e1e1e1;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .documentation-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .doc-card {
+            background: white;
+            border: 2px solid #2c3e50;
+            border-radius: 8px;
+            padding: 20px;
+            transition: transform 0.3s;
+        }
+        
+        .doc-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .doc-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .doc-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+            text-align: center;
+        }
+        
+        .technical-section {
+            background-color: #e8f4fc;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .tech-doc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .tech-doc-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .tech-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .user-doc-section {
+            background-color: #fef9e7;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .user-doc-checklist {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        
+        .check-icon {
+            color: #27ae60;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .training-section {
+            background-color: #e8f6f3;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .training-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .method-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .method-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .maintenance-section {
+            background-color: #f4ecf7;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .maintenance-plan {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .plan-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        
+        .plan-icon {
+            background: #34495e;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .video-section {
+            background-color: #ecf0f1;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        
+        .video-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .video-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+        
+        .video-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .video-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+        
+        .video-desc {
+            font-size: 0.9rem;
+            color: #555;
+        }
+        
+        .metadata {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        
+        .metadata-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .metadata-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .metadata-label {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .metadata-value {
+            color: #555;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            border-top: 1px solid #eaecef;
+            margin-top: 30px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #34495e;
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .code-example {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        
+        @media (max-width: 768px) {
+            .module-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .video-list, .documentation-types, .tech-doc-grid, .training-methods {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .navigation {
+            background: #34495e;
+            padding: 15px 0;
+            border-bottom: 1px solid #2c3e50;
+        }
+
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+        }
+
+        .nav-link {
+            color: #ecf0f1;
+            text-decoration: none;
+            padding: 8px 16px;
+            border: 1px solid #ecf0f1;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .nav-link:hover {
+            background: #ecf0f1;
+            color: #2c3e50;
+        }
+
+        .nav-info {
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+
+        .nav-module {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px 12px;
+            border-radius: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MÓDULO 12: Treinamento e Documentação</h1>
+            <div class="module-info">
+                <div class="info-item">Duração: ~45 minutos</div>
+                <div class="info-item">Dificuldade: Avançado</div>
+                <div class="info-item">Público: Estudantes de tecnologia</div>
+            </div>
+        </header>
+
+        <nav class="navigation">
+            <div class="nav-container">
+                <a href="../index.html" class="nav-link">
+                    ← Voltar para a Página Inicial
+                </a>
+                <div class="nav-info">
+                    <span class="nav-module">Módulo 12</span>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="content">
+            <h2>O que é Documentação de Software</h2>
+            <p>A documentação de software é o conjunto de materiais escritos, visuais e digitais que descrevem como um sistema funciona, como usá-lo e como mantê-lo. É a "memória" do projeto que garante sua longevidade e usabilidade.</p>
+            
+            <div class="highlight">
+                <p><strong>Analogia:</strong> Pense na documentação como o manual do proprietário de um carro. Sem ele, você pode até conseguir dirigir, mas não saberá como fazer manutenção, usar recursos avançados ou resolver problemas específicos. A documentação de software funciona da mesma maneira!</p>
+            </div>
+            
+            <h3>Importância da documentação:</h3>
+            <ul>
+                <li><strong>Preserva conhecimento:</strong> Captura decisões e conhecimentos da equipe</li>
+                <li><strong>Facilita manutenção:</strong> Ajuda novos desenvolvedores a entender o sistema</li>
+                <li><strong>Melhora usabilidade:</strong> Guia usuários no uso correto do software</li>
+                <li><strong>Reduz dependência:</strong> Diminui a dependência de pessoas específicas</li>
+                <li><strong>Garante continuidade:</strong> Permite que o projeto sobreviva a mudanças de equipe</li>
+            </ul>
+            
+            <div class="documentation-types">
+                <div class="doc-card">
+                    <div class="doc-icon">🔧</div>
+                    <div class="doc-title">Documentação Técnica</div>
+                    <p>Para desenvolvedores e equipe técnica. Inclui arquitetura, APIs e código.</p>
+                    <p><em>Exemplo: Documentação de API, diagramas de arquitetura</em></p>
+                </div>
+                
+                <div class="doc-card">
+                    <div class="doc-icon">👥</div>
+                    <div class="doc-title">Documentação de Usuário</div>
+                    <p>Para usuários finais. Ensina como usar o sistema.</p>
+                    <p><em>Exemplo: Manuais, tutoriais, FAQs</em></p>
+                </div>
+                
+                <div class="doc-card">
+                    <div class="doc-icon">📋</div>
+                    <div class="doc-title">Documentação de Processos</div>
+                    <p>Para equipe de operações. Descreve deploy, monitoramento e manutenção.</p>
+                    <p><em>Exemplo: Procedimentos de deploy, runbooks</em></p>
+                </div>
+            </div>
+            
+            <h2>Documentação Técnica</h2>
+            <p>A documentação técnica é voltada para desenvolvedores, arquitetos e equipes de operações. Ela descreve como o sistema foi construído e como funciona internamente.</p>
+            
+            <div class="technical-section">
+                <h3>Tipos de Documentação Técnica:</h3>
+                
+                <div class="tech-doc-grid">
+                    <div class="tech-doc-item">
+                        <div class="tech-icon">🏗️</div>
+                        <strong>Arquitetura</strong>
+                        <p>Diagramas e decisões arquiteturais</p>
+                    </div>
+                    
+                    <div class="tech-doc-item">
+                        <div class="tech-icon">🔗</div>
+                        <strong>API</strong>
+                        <p>Endpoints, parâmetros e exemplos</p>
+                    </div>
+                    
+                    <div class="tech-doc-item">
+                        <div class="tech-icon">📚</div>
+                        <strong>Código</strong>
+                        <p>Comentários e documentação inline</p>
+                    </div>
+                    
+                    <div class="tech-doc-item">
+                        <div class="tech-icon">🚀</div>
+                        <strong>Deploy</strong>
+                        <p>Procedimentos de implantação</p>
+                    </div>
+                </div>
+                
+                <h3>Exemplo de Documentação de API:</h3>
+                
+                <div class="code-example">
+                    /**<br>
+                    * Cria um novo usuário no sistema<br>
+                    * @param {Object} userData - Dados do usuário<br>
+                    * @param {string} userData.name - Nome completo<br>
+                    * @param {string} userData.email - Email válido<br>
+                    * @param {string} userData.password - Senha (mínimo 8 caracteres)<br>
+                    * @returns {Object} Usuário criado<br>
+                    * @throws {ValidationError} Se dados forem inválidos<br>
+                    * @example<br>
+                    * // Request<br>
+                    * POST /api/users<br>
+                    * {<br>
+                    *   "name": "João Silva",<br>
+                    *   "email": "joao@email.com",<br>
+                    *   "password": "senha123"<br>
+                    * }<br>
+                    */<br>
+                    app.post('/api/users', createUser);
+                </div>
+                
+                <h3>Ferramentas para Documentação Técnica:</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Ferramenta</th>
+                            <th>Uso Principal</th>
+                            <th>Vantagens</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Swagger/OpenAPI</strong></td>
+                            <td>Documentação de APIs REST</td>
+                            <td>Padrão industry, geração automática</td>
+                        </tr>
+                        <tr>
+                            <td><strong>JSDoc/TSDoc</strong></td>
+                            <td>Documentação de código JavaScript/TypeScript</td>
+                            <td>Integração com IDE, geração de docs</td>
+                        </tr>
+                        <tr>
+                            <td><strong>GitBook</strong></td>
+                            <td>Documentação geral do projeto</td>
+                            <td>Interface amigável, versionamento</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Confluence</strong></td>
+                            <td>Documentação de equipe</td>
+                            <td>Colaboração, integração com Jira</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Draw.io</strong></td>
+                            <td>Diagramas e arquitetura</td>
+                            <td>Grátis, ampla variedade de diagramas</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <h2>Documentação de Usuário</h2>
+            <p>A documentação de usuário é criada para os usuários finais do sistema, focando em como realizar tarefas específicas e resolver problemas comuns.</p>
+            
+            <div class="user-doc-section">
+                <h3>Checklist para Documentação de Usuário Eficaz:</h3>
+                
+                <div class="user-doc-checklist">
+                    <div class="check-item">
+                        <span class="check-icon">✓</span>
+                        <div>
+                            <strong>Linguagem simples e clara</strong>
+                            <p>Evite jargões técnicos, use linguagem que o usuário entende</p>
+                        </div>
+                    </div>
+                    
+                    <div class="check-item">
+                        <span class="check-icon">✓</span>
+                        <div>
+                            <strong>Exemplos práticos</strong>
+                            <p>Mostre casos reais de uso do sistema</p>
+                        </div>
+                    </div>
+                    
+                    <div class="check-item">
+                        <span class="check-icon">✓</span>
+                        <div>
+                            <strong>Imagens e screenshots</strong>
+                            <p>Uma imagem vale mais que mil palavras</p>
+                        </div>
+                    </div>
+                    
+                    <div class="check-item">
+                        <span class="check-icon">✓</span>
+                        <div>
+                            <strong>Passo a passo</strong>
+                            <p>Instruções detalhadas para tarefas complexas</p>
+                        </div>
+                    </div>
+                    
+                    <div class="check-item">
+                        <span class="check-icon">✓</span>
+                        <div>
+                            <strong>FAQ organizada</strong>
+                            <p>Antecipe e responda perguntas comuns</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>Formatos de Documentação de Usuário:</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Formato</th>
+                            <th>Melhor Para</th>
+                            <th>Exemplo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Guias Rápidos</strong></td>
+                            <td>Novos usuários, tarefas básicas</td>
+                            <td>"Primeiros passos no sistema"</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tutoriais Detalhados</strong></td>
+                            <td>Tarefas complexas, processos completos</td>
+                            <td>"Como gerar relatório mensal completo"</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Vídeos Demonstrativos</strong></td>
+                            <td>Usuários visuais, processos sequenciais</td>
+                            <td>Screen recording de um fluxo completo</td>
+                        </tr>
+                        <tr>
+                            <td><strong>FAQ Interativa</strong></td>
+                            <td>Solução rápida de problemas comuns</td>
+                            <td>"Esqueci minha senha - o que fazer?"</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tooltips e Help Contextual</strong></td>
+                            <td>Ajuda no momento exato do uso</td>
+                            <td>Explicações ao passar mouse sobre campos</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="example-box">
+                    <p><strong>Exemplo de Estrutura para Manual do Usuário:</strong></p>
+                    <ol>
+                        <li><strong>Introdução</strong> - O que é o sistema e para que serve</li>
+                        <li><strong>Primeiros Passos</strong> - Como fazer login e configurar perfil</li>
+                        <li><strong>Funcionalidades Principais</strong> - Capítulos para cada módulo</li>
+                        <li><strong>Fluxos de Trabalho</strong> - Como realizar processos completos</li>
+                        <li><strong>Solução de Problemas</strong> - FAQ e troubleshooting</li>
+                        <li><strong>Glossário</strong> - Definição de termos técnicos</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <h2>Treinamento de Usuários Finais</h2>
+            <p>O treinamento é o processo de ensinar os usuários a utilizar o sistema efetivamente, garantindo que possam extrair o máximo valor da solução desenvolvida.</p>
+            
+            <div class="training-section">
+                <h3>Métodos de Treinamento Eficazes:</h3>
+                
+                <div class="training-methods">
+                    <div class="method-card">
+                        <div class="method-icon">🎥</div>
+                        <strong>Treinamento Online</strong>
+                        <p>Webinars, videoaulas e cursos online</p>
+                    </div>
+                    
+                    <div class="method-card">
+                        <div class="method-icon">👨‍🏫</div>
+                        <strong>Treinamento Presencial</strong>
+                        <p>Workshops, aulas práticas e demonstrações</p>
+                    </div>
+                    
+                    <div class="method-card">
+                        <div class="method-icon">📱</div>
+                        <strong>Microlearning</strong>
+                        <p>Pílulas de conhecimento curtas e focadas</p>
+                    </div>
+                    
+                    <div class="method-card">
+                        <div class="method-icon">🔄</div>
+                        <strong>Mentoria</strong>
+                        <p>Acompanhamento individual ou em pequenos grupos</p>
+                    </div>
+                </div>
+                
+                <h3>Planejamento de Sessão de Treinamento:</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fase</th>
+                            <th>Atividades</th>
+                            <th>Duração</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Preparação</strong></td>
+                            <td>Definir objetivos, preparar material, convidar participantes</td>
+                            <td>1-2 semanas antes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Introdução</strong></td>
+                            <td>Apresentar objetivos, contexto e agenda</td>
+                            <td>10-15 minutos</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Demonstração</strong></td>
+                            <td>Mostrar funcionalidades com exemplos reais</td>
+                            <td>30-40 minutos</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Prática Guiada</strong></td>
+                            <td>Participantes executam tarefas com suporte</td>
+                            <td>45-60 minutos</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Q&A</strong></td>
+                            <td>Tirar dúvidas e resolver problemas específicos</td>
+                            <td>20-30 minutos</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Avaliação</strong></td>
+                            <td>Coletar feedback e medir aprendizado</td>
+                            <td>10-15 minutos</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="highlight">
+                    <p><strong>Dica Importante:</strong> Adapte o treinamento ao perfil dos usuários. Usuários técnicos precisam de detalhes sobre funcionalidades avançadas, enquanto usuários leigos se beneficiam mais de exemplos práticos e linguagem simples.</p>
+                </div>
+                
+                <h3>Materiais de Apoio ao Treinamento:</h3>
+                <ul>
+                    <li><strong>Apresentações visuais:</strong> Slides com screenshots e diagramas</li>
+                    <li><strong>Exercícios práticos:</strong> Casos reais para os participantes resolverem</li>
+                    <li><strong>Cheat sheets:</strong> Resumos rápidos de comandos e atalhos</li>
+                    <li><strong>Gravações:</strong> Para quem não pôde participar ou quer rever</li>
+                    <li><strong>Materiais de referência:</strong> Documentação completa para consulta</li>
+                </ul>
+            </div>
+            
+            <h2>Manutenção da Documentação</h2>
+            <p>A documentação desatualizada é pior que nenhuma documentação. A manutenção contínua é essencial para garantir que a documentação permaneça útil e precisa.</p>
+            
+            <div class="maintenance-section">
+                <h3>Plano de Manutenção da Documentação:</h3>
+                
+                <div class="maintenance-plan">
+                    <div class="plan-item">
+                        <div class="plan-icon">1</div>
+                        <div>
+                            <strong>Estabelecer Responsabilidades</strong>
+                            <p>Definir quem é responsável por atualizar cada tipo de documentação. Technical writers para docs de usuário, desenvolvedores para docs técnicas.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="plan-item">
+                        <div class="plan-icon">2</div>
+                        <div>
+                            <strong>Integrar ao Fluxo de Desenvolvimento</strong>
+                            <p>Incluir atualização da documentação como parte da definição de "pronto" para cada funcionalidade.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="plan-item">
+                        <div class="plan-icon">3</div>
+                        <div>
+                            <strong>Revisões Periódicas</strong>
+                            <p>Agendar revisões trimestrais ou semestrais de toda a documentação para identificar partes desatualizadas.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="plan-item">
+                        <div class="plan-icon">4</div>
+                        <div>
+                            <strong>Coletar Feedback</strong>
+                            <p>Criar mecanismos para usuários e desenvolvedores reportarem documentação desatualizada ou confusa.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="plan-item">
+                        <div class="plan-icon">5</div>
+                        <div>
+                            <strong>Versionar Documentação</strong>
+                            <p>Manter versões da documentação compatíveis com diferentes versões do software.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>Sinais de que a Documentação Precisa de Atualização:</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sinal</th>
+                            <th>O que Verificar</th>
+                            <th>Ação Corretiva</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Screenshots desatualizadas</strong></td>
+                            <td>Interface mostrada não corresponde à atual</td>
+                            <td>Atualizar imagens e descrições</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Funcionalidades não documentadas</strong></td>
+                            <td>Recursos novos não aparecem na docs</td>
+                            <td>Adicionar seções para novas features</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Procedimentos incorretos</strong></td>
+                            <td>Passos descritos não funcionam mais</td>
+                            <td>Revisar e corrigir fluxos</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Links quebrados</strong></td>
+                            <td>Referências para páginas inexistentes</td>
+                            <td>Atualizar ou remover links</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Feedback negativo</strong></td>
+                            <td>Usuários reclamam que a docs não ajuda</td>
+                            <td>Revisar conteúdo e clareza</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="example-box">
+                    <p><strong>Exemplo de Processo de Atualização:</strong></p>
+                    <ol>
+                        <li><strong>Identificação:</strong> Desenvolvedor nota que uma API mudou durante desenvolvimento</li>
+                        <li><strong>Registro:</strong> Cria ticket no backlog para atualizar documentação</li>
+                        <li><strong>Atualização:</strong> Na mesma sprint, atualiza docs da API</li>
+                        <li><strong>Revisão:</strong> Technical writer revisa mudanças</li>
+                        <li><strong>Publicação:</strong> Nova versão da docs é publicada junto com a release</li>
+                        <li><strong>Validação:</strong> Verifica se links e exemplos ainda funcionam</li>
+                    </ol>
+                </div>
+                
+                <div class="highlight">
+                    <p><strong>Melhor Prática:</strong> Trate a documentação como código - versionamento, reviews, testes e deploys automatizados. Ferramentas como Git para versionamento e pipelines CI/CD para publicação automatizada podem transformar completamente a qualidade da documentação.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin: 30px 0;">
+                <a href="../quizzes-detailed/quiz-module-12.html" style="display: inline-block; background: #27ae60; color: white; padding: 12px 25px; border-radius: 5px; text-decoration: none; font-weight: bold;">
+                    Fazer Quiz do Módulo 12
+                </a>
+            </div>
+            
+            <div class="video-section">
+                <h2>Recursos em Vídeo</h2>
+                <p>Para complementar seu aprendizado, recomendamos estes vídeos:</p>
+                
+                <div class="video-list">
+                    <div class="video-item">
+                        <div class="video-title">Documentação que Desenvolvedores Realmente Usam</div>
+                        <div class="video-desc">Técnicas para criar documentação técnica eficaz.</div>
+                    </div>
+                    
+                    <div class="video-item">
+                        <div class="video-title">Treinamento de Usuários: Do Planejamento à Execução</div>
+                        <div class="video-desc">Como estruturar e conduzir treinamentos eficazes.</div>
+                    </div>
+                    
+                    <div class="video-item">
+                        <div class="video-title">Manutenção de Documentação em Projetos Ágeis</div>
+                        <div class="video-desc">Estratégias para manter docs atualizadas em ritmo acelerado.</div>
+                    </div>
+                    
+                    <div class="video-item">
+                        <div class="video-title">Ferramentas Modernas para Documentação</div>
+                        <div class="video-desc">Overview das melhores ferramentas atuais para documentação.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="metadata">
+                <h2>Metadados do Módulo</h2>
+                <div class="metadata-grid">
+                    <div class="metadata-item">
+                        <span class="metadata-label">Título do Módulo:</span>
+                        <span class="metadata-value">Treinamento e Documentação</span>
+                    </div>
+                    
+                    <div class="metadata-item">
+                        <span class="metadata-label">Duração Estimada:</span>
+                        <span class="metadata-value">45 minutos</span>
+                    </div>
+                    
+                    <div class="metadata-item">
+                        <span class="metadata-label">Nível de Dificuldade:</span>
+                        <span class="metadata-value">Avançado</span>
+                    </div>
+                    
+                    <div class="metadata-item">
+                        <span class="metadata-label">Pré-requisitos:</span>
+                        <span class="metadata-value">Módulo 11: Deploy (Entrega)</span>
+                    </div>
+                    
+                    <div class="metadata-item">
+                        <span class="metadata-label">Objetivos de Aprendizado:</span>
+                        <span class="metadata-value">Compreender tipos de documentação de software, criar documentação técnica e de usuário, planejar treinamentos eficazes e implementar processos de manutenção da documentação</span>
+                    </div>
+                    
+                    <div class="metadata-item">
+                        <span class="metadata-label">Palavras-chave:</span>
+                        <span class="metadata-value">documentação, treinamento, usuários, técnico, API, manuais, manutenção, ferramentas, best practices</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Módulo 12 - Treinamento e Documentação | Curso de Iniciação em Tecnologia</p>
+        </footer>
+    </div>
+</body>
+</html>

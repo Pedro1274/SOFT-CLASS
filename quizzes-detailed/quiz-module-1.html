@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Módulo 1: Introdução ao Mercado de Software</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #2c3e50, #4a6491);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .quiz-container {
+            padding: 30px;
+        }
+        
+        .question {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+        }
+        
+        .question-text {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .option {
+            display: flex;
+            align-items: flex-start;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+        
+        .option:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .option.selected {
+            background-color: #e8f4fc;
+            border-color: #3498db;
+        }
+        
+        .option input {
+            margin-right: 10px;
+            margin-top: 3px;
+        }
+        
+        .progress {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .progress-bar {
+            flex-grow: 1;
+            height: 8px;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            margin: 0 15px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background-color: #3498db;
+            width: 0%;
+            transition: width 0.3s;
+        }
+        
+        .progress-text {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            white-space: nowrap;
+        }
+        
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background: #2980b9;
+        }
+        
+        button:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+        }
+        
+        .secondary-btn {
+            background: #2c3e50;
+        }
+        
+        .secondary-btn:hover {
+            background: #1a252f;
+        }
+        
+        .results {
+            display: none;
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .score {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #3498db;
+            margin: 20px 0;
+        }
+        
+        .feedback {
+            margin-top: 20px;
+            text-align: left;
+        }
+        
+        .correct-answer {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .incorrect-answer {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .explanation {
+            margin-top: 5px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        
+        .restart-btn {
+            margin-top: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .actions {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            button {
+                width: 100%;
+            }
+        }
+
+        .navigation {
+            background: #34495e;
+            padding: 12px 0;
+            border-bottom: 1px solid #2c3e50;
+        }
+
+        .nav-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 25px;
+        }
+
+        .nav-link {
+            color: #ecf0f1;
+            text-decoration: none;
+            padding: 6px 12px;
+            border: 1px solid #ecf0f1;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-size: 0.85rem;
+        }
+
+        .nav-link:hover {
+            background: #ecf0f1;
+            color: #2c3e50;
+        }
+
+        .nav-info {
+            color: #bdc3c7;
+            font-size: 0.85rem;
+        }
+
+        .nav-quiz {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 4px 10px;
+            border-radius: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Quiz - Módulo 1</h1>
+            <div class="subtitle">Introdução ao Mercado de Software</div>
+        </header>
+
+        <nav class="navigation">
+            <div class="nav-container">
+                <a href="../modules-detailed/module-1.html" class="nav-link">
+                    ← Voltar para o Módulo 1
+                </a>
+                <div class="nav-info">
+                    <span class="nav-quiz">Quiz do Módulo</span>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="quiz-container" id="quiz">
+            <div class="question">
+                <div class="question-text" id="question-text">Carregando questão...</div>
+                <div class="options" id="options">
+                    <!-- As opções serão inseridas aqui via JavaScript -->
+                </div>
+            </div>
+            
+            <div class="progress">
+                <button id="prev-btn" disabled>Anterior</button>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <div class="progress-text" id="progress-text">1 de 5</div>
+                <button id="next-btn">Próxima</button>
+            </div>
+            
+            <div class="actions">
+                <button id="submit-btn" style="display: none;">Finalizar Quiz</button>
+            </div>
+        </div>
+        
+        <div class="results" id="results">
+            <h2>Resultado do Quiz</h2>
+            <div class="score" id="score">0/5</div>
+            <p id="result-message"></p>
+            
+            <div class="feedback" id="feedback">
+                <!-- O feedback será inserido aqui via JavaScript -->
+            </div>
+            
+            <button class="restart-btn" id="restart-btn">Refazer Quiz</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Configurações do quiz
+            const questions = [
+                {
+                    question: "1. De acordo com o módulo, onde o software está presente atualmente?",
+                    options: {
+                        a: "Apenas em computadores e smartphones",
+                        b: "Em praticamente todos os aspectos da nossa vida moderna",
+                        c: "Principalmente em grandes empresas de tecnologia",
+                        d: "Somente em dispositivos de última geração"
+                    },
+                    correctAnswer: "b",
+                    explanation: "O software está presente em praticamente todos os aspectos da nossa vida moderna, desde dispositivos óbvios como computadores e smartphones até eletrodomésticos inteligentes, sistemas de transporte, dispositivos médicos e infraestrutura urbana."
+                },
+                {
+                    question: "2. O que é uma fábrica de software?",
+                    options: {
+                        a: "Um local físico onde são fabricados componentes de hardware",
+                        b: "Uma organização especializada no desenvolvimento de soluções de software",
+                        c: "Um tipo específico de empresa que vende aplicativos prontos",
+                        d: "Um espaço onde programadores trabalham de forma independente"
+                    },
+                    correctAnswer: "b",
+                    explanation: "Uma fábrica de software é uma organização especializada no desenvolvimento de soluções de software para diferentes clientes e necessidades, seguindo processos padronizados e contando com equipes especializadas."
+                },
+                {
+                    question: "3. Qual é uma das principais razões para a crescente demanda por desenvolvedores de software?",
+                    options: {
+                        a: "Diminuição do uso de tecnologia no dia a dia",
+                        b: "Transformação digital das empresas de todos os setores",
+                        c: "Redução de custos com mão de obra especializada",
+                        d: "Concentração do mercado em poucas grandes empresas"
+                    },
+                    correctAnswer: "b",
+                    explanation: "A transformação digital, onde empresas de todos os setores estão digitalizando seus processos, é uma das principais razões para a crescente demanda por desenvolvedores de software."
+                },
+                {
+                    question: "4. Qual das seguintes NÃO é uma característica principal de uma fábrica de software?",
+                    options: {
+                        a: "Processos padronizados para desenvolvimento",
+                        b: "Equipes especializadas em diferentes áreas",
+                        c: "Capacidade de escalabilidade conforme a demanda",
+                        d: "Foco exclusivo em um único tipo de cliente"
+                    },
+                    correctAnswer: "d",
+                    explanation: "Uma fábrica de software não tem foco exclusivo em um único tipo de cliente. Pelo contrário, ela desenvolve soluções para diferentes clientes e necessidades, podendo atender diversos setores e tamanhos de empresas."
+                },
+                {
+                    question: "5. De acordo com o módulo, qual é o objetivo principal deste curso?",
+                    options: {
+                        a: "Formar especialistas em uma linguagem de programação específica",
+                        b: "Preparar para trabalhar exclusivamente em grandes empresas de tecnologia",
+                        c: "Fornecer uma compreensão sólida de como o software é desenvolvido",
+                        d: "Ensinar apenas teoria sem aplicação prática"
+                    },
+                    correctAnswer: "c",
+                    explanation: "O objetivo do curso é fornecer uma compreensão sólida de como o software é desenvolvido, preparando o aluno para aprofundar-se em áreas específicas de acordo com seu interesse."
+                }
+            ];
+
+            // Elementos da interface
+            const quizContainer = document.getElementById('quiz');
+            const questionTextElement = document.getElementById('question-text');
+            const optionsContainer = document.getElementById('options');
+            const progressFillElement = document.getElementById('progress-fill');
+            const progressTextElement = document.getElementById('progress-text');
+            const resultsContainer = document.getElementById('results');
+            const scoreElement = document.getElementById('score');
+            const resultMessageElement = document.getElementById('result-message');
+            const feedbackElement = document.getElementById('feedback');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const submitBtn = document.getElementById('submit-btn');
+            const restartBtn = document.getElementById('restart-btn');
+            
+            // Estado do quiz
+            let currentQuestion = 0;
+            let userAnswers = new Array(questions.length).fill(null);
+            
+            // Função para exibir a questão atual
+            function showCurrentQuestion() {
+                const question = questions[currentQuestion];
+                
+                // Atualizar texto da questão
+                questionTextElement.textContent = question.question;
+                
+                // Limpar opções anteriores
+                optionsContainer.innerHTML = '';
+                
+                // Adicionar novas opções
+                for (const [key, value] of Object.entries(question.options)) {
+                    const optionElement = document.createElement('label');
+                    optionElement.className = 'option';
+                    if (userAnswers[currentQuestion] === key) {
+                        optionElement.classList.add('selected');
+                    }
+                    
+                    optionElement.innerHTML = `
+                        <input type="radio" name="current-question" value="${key}" ${userAnswers[currentQuestion] === key ? 'checked' : ''}>
+                        ${value}
+                    `;
+                    
+                    optionElement.addEventListener('click', function() {
+                        // Remover seleção anterior
+                        document.querySelectorAll('.option').forEach(opt => {
+                            opt.classList.remove('selected');
+                        });
+                        
+                        // Marcar nova seleção
+                        this.classList.add('selected');
+                        userAnswers[currentQuestion] = key;
+                        
+                        // Ativar botão de próxima se não for a última questão
+                        if (currentQuestion < questions.length - 1) {
+                            nextBtn.disabled = false;
+                        } else {
+                            submitBtn.disabled = false;
+                        }
+                    });
+                    
+                    optionsContainer.appendChild(optionElement);
+                }
+                
+                // Atualizar barra de progresso
+                const progressPercentage = ((currentQuestion + 1) / questions.length) * 100;
+                progressFillElement.style.width = `${progressPercentage}%`;
+                progressTextElement.textContent = `${currentQuestion + 1} de ${questions.length}`;
+                
+                // Atualizar estado dos botões
+                prevBtn.disabled = currentQuestion === 0;
+                
+                if (currentQuestion < questions.length - 1) {
+                    nextBtn.style.display = 'block';
+                    submitBtn.style.display = 'none';
+                    nextBtn.disabled = userAnswers[currentQuestion] === null;
+                } else {
+                    nextBtn.style.display = 'none';
+                    submitBtn.style.display = 'block';
+                    submitBtn.disabled = userAnswers[currentQuestion] === null;
+                }
+            }
+            
+            // Inicializar a interface
+            showCurrentQuestion();
+            
+            // Event listeners para navegação
+            prevBtn.addEventListener('click', function() {
+                if (currentQuestion > 0) {
+                    currentQuestion--;
+                    showCurrentQuestion();
+                }
+            });
+            
+            nextBtn.addEventListener('click', function() {
+                if (currentQuestion < questions.length - 1) {
+                    currentQuestion++;
+                    showCurrentQuestion();
+                }
+            });
+            
+            // Event listener para enviar o quiz
+            submitBtn.addEventListener('click', function() {
+                // Verificar se todas as questões foram respondidas
+                const unansweredQuestions = userAnswers.filter(answer => answer === null).length;
+                if (unansweredQuestions > 0) {
+                    alert(`Por favor, responda todas as questões. Você ainda tem ${unansweredQuestions} questão(ões) sem resposta.`);
+                    return;
+                }
+                
+                // Calcular pontuação
+                let score = 0;
+                questions.forEach((question, index) => {
+                    if (userAnswers[index] === question.correctAnswer) {
+                        score++;
+                    }
+                });
+                
+                // Exibir resultados
+                quizContainer.style.display = 'none';
+                resultsContainer.style.display = 'block';
+                
+                // Atualizar pontuação
+                scoreElement.textContent = `${score}/${questions.length}`;
+                
+                // Mensagem personalizada baseada na pontuação
+                if (score === questions.length) {
+                    resultMessageElement.textContent = "Parabéns! Você demonstrou excelente compreensão do conteúdo do módulo.";
+                } else if (score >= questions.length * 0.7) {
+                    resultMessageElement.textContent = "Bom trabalho! Você compreendeu a maior parte do conteúdo.";
+                } else {
+                    resultMessageElement.textContent = "Que tal revisar o conteúdo do módulo antes de prosseguir?";
+                }
+                
+                // Gerar feedback detalhado
+                feedbackElement.innerHTML = '<h3>Detalhes das Respostas:</h3>';
+                questions.forEach((question, index) => {
+                    const userAnswer = userAnswers[index];
+                    const isCorrect = userAnswer === question.correctAnswer;
+                    
+                    const questionFeedback = document.createElement('div');
+                    questionFeedback.className = 'question-feedback';
+                    questionFeedback.innerHTML = `
+                        <p><strong>Questão ${index + 1}:</strong> ${question.question}</p>
+                        <p class="${isCorrect ? 'correct-answer' : 'incorrect-answer'}">
+                            Sua resposta: ${question.options[userAnswer]}
+                        </p>
+                        ${!isCorrect ? `
+                            <p class="correct-answer">
+                                Resposta correta: ${question.options[question.correctAnswer]}
+                            </p>
+                        ` : ''}
+                        <p class="explanation">${question.explanation}</p>
+                        <hr>
+                    `;
+                    
+                    feedbackElement.appendChild(questionFeedback);
+                });
+            });
+            
+            // Event listener para reiniciar o quiz
+            restartBtn.addEventListener('click', function() {
+                // Resetar estado do quiz
+                currentQuestion = 0;
+                userAnswers = new Array(questions.length).fill(null);
+                
+                // Mostrar quiz e esconder resultados
+                quizContainer.style.display = 'block';
+                resultsContainer.style.display = 'none';
+                
+                // Atualizar interface
+                showCurrentQuestion();
+            });
+        });
+    </script>
+</body>
+</html>

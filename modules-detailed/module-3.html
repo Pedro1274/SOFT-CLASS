@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 3: Identificação do Problema</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #e67e22, #e74c3c);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .module-info {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .info-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        h2 {
+            color: #e67e22;
+            margin: 25px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #eaecef;
+        }
+        
+        h3 {
+            color: #e74c3c;
+            margin: 20px 0 10px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .highlight {
+            background-color: #fef9e7;
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .example-box {
+            background-color: #f9f9f9;
+            border: 1px solid #e1e1e1;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .pain-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .pain-card {
+            background: white;
+            border: 2px solid #f39c12;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .pain-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .pain-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .pain-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .observation-techniques {
+            background-color: #fffaf0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .technique-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .technique-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #e67e22;
+        }
+        
+        .validation-steps {
+            background-color: #f0f8ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+        }
+        
+        .step-number {
+            background: #e67e22;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .video-section {
+            background-color: #fff5f5;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        
+        .video-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .video-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+        
+        .video-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .video-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+        
+        .video-desc {
+            font-size: 0.9rem;
+            color: #555;
+        }
+        
+        .metadata {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        
+        .metadata-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .metadata-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .metadata-label {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .metadata-value {
+            color: #555;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            border-top: 1px solid #eaecef;
+            margin-top: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .module-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .video-list, .pain-points, .technique-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .navigation {
+            background: #34495e;
+            padding: 15px 0;
+            border-bottom: 1px solid #2c3e50;
+        }
+
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+        }
+
+        .nav-link {
+            color: #ecf0f1;
+            text-decoration: none;
+            padding: 8px 16px;
+            border: 1px solid #ecf0f1;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .nav-link:hover {
+            background: #ecf0f1;
+            color: #2c3e50;
+        }
+
+        .nav-info {
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+
+        .nav-module {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px 12px;
+            border-radius: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MÓDULO 3: Identificação do Problema</h1>
+            <div class="module-info">
+                <div class="info-item">Duração: ~45 minutos</div>
+                <div class="info-item">Dificuldade: Iniciante</div>
+                <div class="info-item">Público: Estudantes de tecnologia</div>
+            </div>
+        </header>
+
+        <nav class="navigation">
+            <div class="nav-container">
+                <a href="../index.html" class="nav-link">
+                    ← Voltar para a Página Inicial
+                </a>
+                <div class="nav-info">
+                    <span class="nav-module">Módulo 3</span>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="content">
+            <h2>O que é uma "Dor" do Usuário</h2>
+            <p>No desenvolvimento de software, uma "dor" do usuário representa um problema, dificuldade ou frustração que as pessoas enfrentam em seu dia a dia. Identificar essas dores é o primeiro passo para criar soluções tecnológicas realmente úteis e valiosas.</p>
+            
+            <div class="highlight">
+                <p><strong>Pense assim:</strong> Grandes soluções de software nascem da identificação de pequenas frustrações do cotidiano. O WhatsApp surgiu da "dor" de pagar SMS, o Uber da "dor" de esperar por táxis, e o Netflix da "dor" de ter que ir até uma locadora.</p>
+            </div>
+            
+            <p>As dores dos usuários podem ser classificadas em diferentes tipos:</p>
+            
+            <div class="pain-points">
+                <div class="pain-card">
+                    <div class="pain-icon">⏰</div>
+                    <div class="pain-title">Dor de Tempo</div>
+                    <p>Processos que consomem muito tempo ou são repetitivos</p>
+                </div>
+                
+                <div class="pain-card">
+                    <div class="pain-icon">💸</div>
+                    <div class="pain-title">Dor Financeira</div>
+                    <p>Custos elevados ou desperdício de recursos</p>
+                </div>
+                
+                <div class="pain-card">
+                    <div class="pain-icon">😫</div>
+                    <div class="pain-title">Dor de Esforço</div>
+                    <p>Tarefas complexas ou que exigem muito trabalho manual</p>
+                </div>
+                
+                <div class="pain-card">
+                    <div class="pain-icon">🚫</div>
+                    <div class="pain-title">Dor de Limitação</div>
+                    <p>Falta de opções ou recursos para resolver um problema</p>
+                </div>
+            </div>
+            
+            <h3>Como identificar dores reais:</h3>
+            <ul>
+                <li><strong>Ouvir ativamente:</strong> Prestar atenção nas reclamações das pessoas</li>
+                <li><strong>Observar comportamentos:</strong> Ver como as pessoas contornam problemas</li>
+                <li><strong>Questionar "porquês":</strong> Entender a raiz dos problemas</li>
+                <li><strong>Identificar workarounds:</strong> Soluções improvisadas que as pessoas criam</li>
+            </ul>
+            
+            <h2>Observando o Cotidiano</h2>
+            <p>A melhor maneira de identificar problemas reais é observando o mundo ao seu redor com curiosidade e atenção. Desenvolvedores bem-sucedidos são como detetives - sempre procurando por inconsistências, ineficiências e oportunidades de melhoria.</p>
+            
+            <div class="observation-techniques">
+                <h3>Técnicas de Observação Eficazes:</h3>
+                
+                <div class="technique-grid">
+                    <div class="technique-item">
+                        <strong>Auto-observação</strong>
+                        <p>Identifique suas próprias frustrações no dia a dia</p>
+                    </div>
+                    
+                    <div class="technique-item">
+                        <strong>Shadowing</strong>
+                        <p>Acompanhe pessoas realizando suas atividades rotineiras</p>
+                    </div>
+                    
+                    <div class="technique-item">
+                        <strong>Entrevistas</strong>
+                        <p>Converse com potenciais usuários sobre seus desafios</p>
+                    </div>
+                    
+                    <div class="technique-item">
+                        <strong>Análise de dados</strong>
+                        <p>Procure por padrões em comportamentos e resultados</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="example-box">
+                <p><strong>Exemplo Prático:</strong> Um estudante percebe que sempre se atrasa para as aulas porque o aplicativo de ônibus não mostra o tempo real de chegada com precisão. Essa observação do cotidiano revela uma "dor" compartilhada por muitos outros passageiros.</p>
+            </div>
+            
+            <h3>Áreas férteis para observação:</h3>
+            <ul>
+                <li><strong>Ambiente educacional:</strong> Como estudantes e professores organizam tarefas, estudos e comunicação</li>
+                <li><strong>Rotina doméstica:</strong> Tarefas domésticas, compras, organização familiar</li>
+                <li><strong>Deslocamento:</strong> Transporte, trânsito, logística</li>
+                <li><strong>Compras e serviços:</strong> Experiências com lojas, bancos, atendimento</li>
+                <li><strong>Lazer e entretenimento:</strong> Como as pessoas se divertem e relaxam</li>
+            </ul>
+            
+            <h2>Transformando Problemas em Oportunidades</h2>
+            <p>Identificar um problema é apenas o começo. A verdadeira habilidade está em transformar essas dores em oportunidades de solução através do software.</p>
+            
+            <h3>Processo de transformação:</h3>
+            <ol>
+                <li><strong>Definir claramente o problema:</strong> Seja específico sobre o que está causando a dor</li>
+                <li><strong>Entender o contexto:</strong> Quem sofre com isso? Quando? Onde? Por quê?</li>
+                <li><strong>Quantificar o impacto:</strong> Quanto tempo/dinheiro/esforço é perdido?</li>
+                <li><strong>Brainstorm de soluções:</strong> Gerar várias ideias sem julgamento inicial</li>
+                <li><strong>Selecionar a abordagem mais promissora:</strong> Considerar viabilidade e impacto</li>
+            </ol>
+            
+            <div class="highlight">
+                <p><strong>Dica importante:</strong> Nem toda dor precisa de uma solução tecnológica complexa. Às vezes, a melhor solução é a mais simples. O importante é resolver o problema real do usuário, não criar tecnologia pela tecnologia.</p>
+            </div>
+            
+            <h3>Perguntas-chave para validar oportunidades:</h3>
+            <ul>
+                <li>Esse problema afeta muitas pessoas?</li>
+                <li>As pessoas estariam dispostas a pagar por uma solução?</li>
+                <li>Existem soluções atuais? Por que elas não são satisfatórias?</li>
+                <li>A solução proposta é técnica e economicamente viável?</li>
+                <li>Qual seria o impacto positivo na vida dos usuários?</li>
+            </ul>
+            
+            <h2>Validação Inicial</h2>
+            <p>Antes de investir tempo e recursos no desenvolvimento, é crucial validar se o problema identificado é real e se a solução proposta resolveria efetivamente a dor do usuário.</p>
+            
+            <div class="validation-steps">
+                <h3>Passos para Validação Inicial:</h3>
+                
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div>
+                        <strong>Definição da Hipótese</strong>
+                        <p>Formule claramente: "Acredito que [grupo de usuários] tem o problema de [dor específica] e uma solução que [benefício] resolveria isso."</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div>
+                        <strong>Pesquisa com Potenciais Usuários</strong>
+                        <p>Converse com 5-10 pessoas que representem seu público-alvo. Faça perguntas abertas para entender suas experiências reais.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div>
+                        <strong>Teste de Conceito</strong>
+                        <p>Apresente a ideia de solução de forma simples (pode ser apenas uma descrição ou esboço) e veja se há interesse genuíno.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div>
+                        <strong>Análise de Viabilidade</strong>
+                        <p>Avalie se você tem (ou pode adquirir) os recursos técnicos, tempo e conhecimento para desenvolver a solução.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="example-box">
+                <p><strong>Cenário Real:</strong> Uma estudante identificou que os moradores de seu prédio tinham dificuldade em combinar horários para usar a lavanderia compartilhada. Antes de desenvolver um aplicativo, ela validou a ideia conversando com 8 vizinhos, criou um protótipo no papel e testou por uma semana. A validação mostrou que o problema era real e a solução seria bem recebida.</p>
+            </div>
+            
+            <h3>Sinais de que vale a pena prosseguir:</h3>
+            <ul>
+                <li>Várias pessoas confirmam ter o mesmo problema</li>
+                <li>Os usuários demonstram entusiasmo com a solução proposta</li>
+                <li>Não existem soluções adequadas disponíveis</li>
+                <li>O problema causa impacto significativo (tempo, dinheiro, qualidade de vida)</li>
+                <li>Você tem paixão pelo problema e motivação para resolvê-lo</li>
+            </ul>
+
+            <div style="text-align: center; margin: 30px 0;">
+                <a href="../quizzes-detailed/quiz-module-3.html" style="display: inline-block; background: #e67e22; color: white; padding: 12px 25px; border-radius: 5px; text-decoration: none; font-weight: bold;">
+                    Fazer Quiz do Módulo 3
+                </a>
+            </div>
+            
+            <div class="video-section">
+                <h2>Recursos em Vídeo</h2>
+                <p>Para complementar seu aprendizado, recomendamos estes vídeos:</p>
+                
+                <div class="video-list">
+                    <div class="video-item">
+                        <div class="video-title">Identificando Dores Reais do Usuário</div>
+                        <div class="video-desc">Técnicas práticas para descobrir problemas que valem a pena resolver.</div>
+                    </div>
+                    
+                    <div class="video-item">
+                        <div class="video-title">Da Observação à Oportunidade</div>
+                        <div class="video-desc">Como transformar insights do cotidiano em ideias de negócio.</div>
+                    </div>
+                    
+                    <div class="video-item">
+                        <div class="video-title">Validação Rápida de Ideias</div>
+                        <div class="video-desc">Métodos ágeis para testar se uma ideia tem potencial antes de desenvolver.</div>
+                    </div>
+                    
+                    <div class="video-item">
+                        <div class="video-title">Cases: Como Grandes Apps Identificaram Problemas</div>
+                        <div class="video-desc">Histórias reais de como aplicativos populares nasceram de dores específicas.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="metadata">
+                <h2>Metadados do Módulo</h2>
+                <div class="metadata-grid">
+                    <div class="metadata-item">
+                        <span class="metadata-label">Título do Módulo:</span>
+                        <span class="metadata-value">Identificação do Problema</span>
+                    </div>
+                    
+                    <div class="metadata-item">
+                        <span class="metadata-label">Duração Estimada:</span>
+                        <span class="metadata-value">45 minutos</span>
+                    </div>
+                    
+                    <div class="metadata-item">
+                        <span class="metadata-label">Nível de Dificuldade:</span>
+                        <span class="metadata-value">Iniciante</span>
+                    </div>
+                    
+                    <div class="metadata-item">
+                        <span class="metadata-label">Pré-requisitos:</span>
+                        <span class="metadata-value">Módulo 2: Maturidade em Desenvolvimento de Software</span>
+                    </div>
+                    
+                    <div class="metadata-item">
+                        <span class="metadata-label">Objetivos de Aprendizado:</span>
+                        <span class="metadata-value">Compreender o conceito de "dor do usuário", desenvolver habilidades de observação, aprender a transformar problemas em oportunidades e aplicar técnicas de validação inicial</span>
+                    </div>
+                    
+                    <div class="metadata-item">
+                        <span class="metadata-label">Palavras-chave:</span>
+                        <span class="metadata-value">problema, dor do usuário, observação, oportunidade, validação, ideação</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Módulo 3 - Identificação do Problema | Curso de Iniciação em Tecnologia</p>
+        </footer>
+    </div>
+</body>
+</html>

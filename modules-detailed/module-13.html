@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 13: Suporte e Manutenção</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #7d3c98, #8e44ad);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .module-info {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .info-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        h2 {
+            color: #7d3c98;
+            margin: 25px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #eaecef;
+        }
+        
+        h3 {
+            color: #8e44ad;
+            margin: 20px 0 10px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .highlight {
+            background-color: #f4ecf7;
+            border-left: 4px solid #7d3c98;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .example-box {
+            background-color: #f9f9f9;
+            border: 1px solid #e1e1e1;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .lifecycle-phases {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .phase-card {
+            background: white;
+            border: 2px solid #8e44ad;
+            border-radius: 8px;
+            padding: 20px;
+            transition: transform 0.3s;
+        }
+        
+        .phase-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .phase-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .phase-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+            text-align: center;
+        }
+        
+        .bug-fixing {
+            background-color: #fef5e7;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .bug-workflow {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .workflow-step {
+            display: flex;
+            align-items: flex-start;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #f39c12;
+        }
+        
+        .step-number {
+            background: #f39c12;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .security-section {
+            background-color: #fdedec;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .security-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .security-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .security-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .evolution-section {
+            background-color: #e8f6f3;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .improvement-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .improvement-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .improvement-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .versioning-section {
+            background-color: #e8f4fc;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .semantic-versioning {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .version-example {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        .video-section {
+            background-color: #f4ecf7;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        
+        .video-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .video-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+        
+        .video-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .video-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+        
+        .video-desc {
+            font-size: 0.9rem;
+            color: #555;
+        }
+        
+        .metadata {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        
+        .metadata-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .metadata-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .metadata-label {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .metadata-value {
+            color: #555;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            border-top: 1px solid #eaecef;
+            margin-top: 30px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #7d3c98;
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .code-example {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        
+        @media (max-width: 768px) {
+            .module-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .video-list, .lifecycle-phases, .security-grid, .improvement-types {
+                grid-template-columns: 1fr;
+            }
+            
+            .bug-workflow {
+                gap: 20px;
+            }
+        }
+
+        .navigation {
+            background: #34495e;
+            padding: 15px 0;
+            border-bottom: 1px solid #2c3e50;
+        }
+
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+        }
+
+        .nav-link {
+            color: #ecf0f1;
+            text-decoration: none;
+            padding: 8px 16px;
+            border: 1px solid #ecf0f1;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .nav-link:hover {
+            background: #ecf0f1;
+            color: #2c3e50;
+        }
+
+        .nav-info {
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+
+        .nav-module {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px 12px;
+            border-radius: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MÓDULO 13: Suporte e Manutenção</h1>
+            <div class="module-info">
+                <div class="info-item">Duração: ~45 minutos</div>
+                <div class="info-item">Dificuldade: Avançado</div>
+                <div class="info-item">Público: Estudantes de tecnologia</div>
+            </div>
+        </header>
+
+        <nav class="navigation">
+            <div class="nav-container">
+                <a href="../index.html" class="nav-link">
+                    ← Voltar para a Página Inicial
+                </a>
+                <div class="nav-info">
+                    <span class="nav-module">Módulo 13</span>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="content">
+            <h2>O Ciclo de Vida Pós-Deploy</h2>
+            <p>O deploy não é o fim do desenvolvimento - é apenas o início de uma nova fase crucial. O ciclo de vida pós-deploy envolve todas as atividades necessárias para manter o software funcionando, seguro e evoluindo conforme as necessidades dos usuários.</p>
+            
+            <div class="highlight">
+                <p><strong>Analogia:</strong> Pense no software como um carro novo. Após a compra (deploy), você precisa fazer manutenção regular, trocar peças, abastecer e às vezes levar para reparos. O software também precisa de "revisões" constantes para manter seu valor e funcionalidade.</p>
+            </div>
+            
+            <div class="lifecycle-phases">
+                <div class="phase-card">
+                    <div class="phase-icon">🚨</div>
+                    <div class="phase-title">Suporte Imediato</div>
+                    <p>Primeiras 72 horas pós-deploy. Monitoramento intensivo, correção de problemas críticos e suporte aos usuários.</p>
+                    <p><em>Foco: Estabilização</em></p>
+                </div>
+                
+                <div class="phase-card">
+                    <div class="phase-icon">🔧</div>
+                    <div class="phase-title">Manutenção Corretiva</div>
+                    <p>Semanas 1-12. Correção de bugs, ajustes de performance e pequenas melhorias baseadas no feedback.</p>
+                    <p><em>Foco: Consolidação</em></p>
+                </div>
+                
+                <div class="phase-card">
+                    <div class="phase-icon">🛡️</div>
+                    <div class="phase-title">Manutenção Preventiva</div>
+                    <p>Meses 3-12. Atualizações de segurança, otimizações e preparação para evolução.</p>
+                    <p><em>Foco: Sustentabilidade</em></p>
+                </div>
+                
+                <div class="phase-card">
+                    <div class="phase-icon">🚀</div>
+                    <div class="phase-title">Evolução</div>
+                    <p>Após 1 ano. Novas funcionalidades, refatoração e adaptação a novas necessidades.</p>
+                    <p><em>Foco: Crescimento</em></p>
+                </div>
+            </div>
+            
+            <h3>Atividades Chave em Cada Fase:</h3>
+            <ul>
+                <li><strong>Suporte Imediato:</strong> Health checks, monitoramento de logs, suporte a usuários, hotfixes</li>
+                <li><strong>Manutenção Corretiva:</strong> Triagem de bugs, correções prioritárias, documentação de incidentes</li>
+                <li><strong>Manutenção Preventiva:</strong> Atualizações de dependências, backups, otimização de performance</li>
+                <li><strong>Evolução:</strong> Coleta de feedback, planejamento de novas features, refatoração estratégica</li>
+            </ul>
+            
+            <h2>Correção de Bugs</h2>
+            <p>A correção de bugs é uma atividade sistemática que vai muito além de "consertar o que está quebrado". Envolve análise, priorização e implementação de soluções sustentáveis.</p>
+            
+            <div class="bug-fixing">
+                <h3>Workflow de Correção de Bugs:</h3>
+                
+                <div class="bug-workflow">
+                    <div class="workflow-step">
+                        <div class="step-number">1</div>
+                        <div>
+                            <strong>Identificação e Relato</strong>
+                            <p>Bug é identificado por usuários, testes automatizados ou monitoramento. Deve incluir: descrição clara, steps to reproduce, ambiente e severidade.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="workflow-step">
+                        <div class="step-number">2</div>
+                        <div>
+                            <strong>Triagem e Priorização</strong>
+                            <p>Analisar impacto, frequência e severidade. Classificar como: Crítico, Alto, Médio ou Baixo.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="workflow-step">
+                        <div class="step-number">3</div>
+                        <div>
+                            <strong>Investigação Técnica</strong>
+                            <p>Reproduzir o bug localmente, analisar logs, identificar root cause e escopo do problema.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="workflow-step">
+                        <div class="step-number">4</div>
+                        <div>
+                            <strong>Desenvolvimento da Correção</strong>
+                            <p>Implementar fix, criar testes para evitar regressão e documentar a solução.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="workflow-step">
+                        <div class="step-number">5</div>
+                        <div>
+                            <strong>Teste e Validação</strong>
+                            <p>Testar a correção em ambiente controlado, validar com usuário que reportou o problema.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="workflow-step">
+                        <div class="step-number">6</div>
+                        <div>
+                            <strong>Deploy e Monitoramento</strong>
+                            <p>Implementar a correção em produção e monitorar para garantir que o problema foi resolvido.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>Classificação de Severidade de Bugs:</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Severidade</th>
+                            <th>Impacto</th>
+                            <th>Exemplo</th>
+                            <th>Prazo de Correção</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Crítico</strong></td>
+                            <td>Sistema inoperante ou perda de dados</td>
+                            <td>Login não funciona para todos os usuários</td>
+                            <td>Imediato (horas)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Alto</strong></td>
+                            <td>Funcionalidade principal afetada</td>
+                            <td>Checkout de compras quebrado</td>
+                            <td>1-3 dias</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Médio</strong></td>
+                            <td>Funcionalidade secundária afetada</td>
+                            <td>Relatório com dados incorretos</td>
+                            <td>1-2 semanas</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Baixo</strong></td>
+                            <td>Problema cosmético ou de usabilidade</td>
+                            <td>Botão com cor errada</td>
+                            <td>Próximo ciclo</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="example-box">
+                    <p><strong>Exemplo de Bug Report Eficaz:</strong></p>
+                    <ul>
+                        <li><strong>Título:</strong> Erro 500 ao tentar filtrar produtos por categoria</li>
+                        <li><strong>Descrição:</strong> Ao selecionar "Eletrônicos" no filtro, sistema retorna erro 500</li>
+                        <<li><strong>Steps to Reproduce:</strong> 
+                            <ol>
+                                <li>Acessar página de produtos</li>
+                                <li>Clicar em "Filtrar por Categoria"</li>
+                                <li>Selecionar "Eletrônicos"</li>
+                                <li>Erro 500 é exibido</li>
+                            </ol>
+                        </li>
+                        <li><strong>Ambiente:</strong> Chrome 98, Windows 10</li>
+                        <li><strong>Severidade:</strong> Alto - impede compras de eletrônicos</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h2>Atualizações de Segurança</h2>
+            <p>Manter o software seguro é uma responsabilidade contínua. Vulnerabilidades são descobertas constantemente e atualizações proativas são essenciais para proteger usuários e dados.</p>
+            
+            <div class="security-section">
+                <div class="security-grid">
+                    <div class="security-item">
+                        <div class="security-icon">📦</div>
+                        <strong>Dependências</strong>
+                        <p>Atualizar bibliotecas e frameworks regularmente</p>
+                    </div>
+                    
+                    <div class="security-item">
+                        <div class="security-icon">🔐</div>
+                        <strong>Autenticação</strong>
+                        <p>Revisar e fortalecer sistemas de login</p>
+                    </div>
+                    
+                    <div class="security-item">
+                        <div class="security-icon">🛡️</div>
+                        <strong>Firewalls</strong>
+                        <p>Configurar e monitorar proteções de rede</p>
+                    </div>
+                    
+                    <div class="security-item">
+                        <div class="security-icon">📊</div>
+                        <strong>Monitoramento</strong>
+                        <p>Detectar e responder a tentativas de invasão</p>
+                    </div>
+                </div>
+                
+                <h3>Checklist de Segurança Mensal:</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Atividade</th>
+                            <th>Frequência</th>
+                            <th>Ferramentas Sugeridas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Scan de Vulnerabilidades</strong></td>
+                            <td>Mensal</td>
+                            <td>OWASP ZAP, Snyk, npm audit</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Atualização de Dependências</strong></td>
+                            <td>Mensal</td>
+                            <td>Dependabot, Renovate</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Review de Logs de Segurança</strong></td>
+                            <td>Semanal</td>
+                            <td>Splunk, ELK Stack</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Teste de Penetração</strong></td>
+                            <td>Trimestral</td>
+                            <td>Burp Suite, Metasploit</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Backup e Recovery Test</strong></td>
+                            <td>Trimestral</td>
+                            <td>Scripts automatizados</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="highlight">
+                    <p><strong>Alerta Crítico:</strong> Vulnerabilidades de dia zero (zero-day) exigem ação imediata. Monitore feeds de segurança como CVE (Common Vulnerabilities and Exposures) e tenha um plano de resposta a incidentes preparado.</p>
+                </div>
+                
+                <h3>Exemplo de Atualização de Segurança:</h3>
+                <div class="code-example">
+                    # Vulnerabilidade crítica no pacote 'lodash' versão 4.17.20<br>
+                    # CVE-2021-23337 - Prototype Pollution<br>
+                    <br>
+                    # Antes (vulnerável):<br>
+                    "dependencies": {<br>
+                    &nbsp;&nbsp;"lodash": "^4.17.20"<br>
+                    }<br>
+                    <br>
+                    # Depois (corrigido):<br>
+                    "dependencies": {<br>
+                    &nbsp;&nbsp;"lodash": "^4.17.21"<br>
+                    }
+                </div>
+            </div>
+            
+            <h2>Evolução e Melhorias</h2>
+            <p>Software que não evolui torna-se obsoleto. A evolução contínua mantém o produto relevante e competitivo no mercado.</p>
+            
+            <div class="evolution-section">
+                <div class="improvement-types">
+                    <div class="improvement-card">
+                        <div class="improvement-icon">⚡</div>
+                        <strong>Performance</strong>
+                        <p>Otimização de velocidade e consumo de recursos</p>
+                    </div>
+                    
+                    <div class="improvement-card">
+                        <div class="improvement-icon">🎨</div>
+                        <strong>UX/UI</strong>
+                        <p>Melhorias na experiência e interface do usuário</p>
+                    </div>
+                    
+                    <div class="improvement-card">
+                        <div class="improvement-icon">🔧</div>
+                        <strong>Manutenibilidade</strong>
+                        <p>Refatoração para facilitar manutenção futura</p>
+                    </div>
+                    
+                    <div class="improvement-card">
+                        <div class="improvement-icon">📈</div>
+                        <strong>Escalabilidade</strong>
+                        <p>Preparação para crescimento de usuários e dados</p>
+                    </div>
+                </div>
+                
+                <h3>Processo de Evolução Contínua:</h3>
+                <ol>
+                    <li><strong>Coleta de Feedback:</strong> Usuários, analytics, suporte técnico</li>
+                    <li><strong>Análise de Dados:</strong> Métricas de uso, performance e erros</li>
+                    <li><strong>Priorização:</strong> Impacto vs esforço, alinhamento com objetivos</li>
+                    <li><strong>Planejamento:</strong> Roadmap, sprints, recursos necessários</li>
+                    <li><strong>Implementação:</strong> Desenvolvimento iterativo com feedback contínuo</li>
+                    <li><strong>Validação:</strong> Testes A/B, métricas de sucesso, feedback pós-lançamento</li>
+                </ol>
+                
+                <h3>Métricas para Decisões de Evolução:</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Métrica</th>
+                            <th>O que Mede</th>
+                            <th>Como Usar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Taxa de Engajamento</strong></td>
+                            <td>Como os usuários interagem com o sistema</td>
+                            <td>Identificar funcionalidades subutilizadas</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tempo na Tarefa</strong></td>
+                            <td>Eficiência do usuário</td>
+                            <td>Oportunidades de automação ou simplificação</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Taxa de Erros</strong></td>
+                            <td>Estabilidade do sistema</td>
+                            <td>Priorizar áreas problemáticas</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Feedback dos Usuários</strong></td>
+                            <td>Satisfação e necessidades</td>
+                            <td>Direcionar desenvolvimento de novas features</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="example-box">
+                    <p><strong>Caso de Evolução Bem-Sucedida:</strong></p>
+                    <p><strong>Problema:</strong> Usuários relatavam que o processo de upload de arquivos era muito lento</p>
+                    <p><strong>Análise:</strong> Métricas mostraram que 40% dos usuários cancelavam uploads acima de 10MB</p>
+                    <p><strong>Solução:</strong> 
+                        <ul>
+                            <li>Implementação de upload em partes (chunked upload)</li>
+                            <li>Barra de progresso em tempo real</li>
+                            <li>Retry automático em caso de falha</li>
+                        </ul>
+                    </p>
+                    <p><strong>Resultado:</strong> Taxa de cancelamento caiu para 5% e satisfação aumentou 35%</p>
+                </div>
+            </div>
+            
+            <h2>Versionamento e Semântica</h2>
+            <p>Um sistema de versionamento claro e consistente é essencial para comunicação eficaz entre equipes e usuários sobre o que cada release contém.</p>
+            
+            <div class="versioning-section">
+                <div class="semantic-versioning">
+                    <h3>Versionamento Semântico (SemVer):</h3>
+                    
+                    <div class="version-example">
+                        <span style="color: #e74c3c;">MAJOR</span>
+                        <span style="color: #f39c12;">MINOR</span>
+                        <span style="color: #27ae60;">PATCH</span>
+                    </div>
+                    <div class="version-example">
+                        <span style="color: #e74c3c;">2</span>.<span style="color: #f39c12;">1</span>.<span style="color: #27ae60;">3</span>
+                    </div>
+                    
+                    <h3>Regras do SemVer:</h3>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tipo de Mudança</th>
+                                <th>Incremento</th>
+                                <th>Exemplo</th>
+                                <th>Impacto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Bug Fix</strong></td>
+                                <td>PATCH (x.x.1 → x.x.2)</td>
+                                <td>Correção de cálculo de imposto</td>
+                                <td>Compatível com versões anteriores</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Nova Funcionalidade</strong></td>
+                                <td>MINOR (x.1.x → x.2.x)</td>
+                                <td>Adição de export para PDF</td>
+                                <td>Compatível com versões anteriores</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Mudança Incompatível</strong></td>
+                                <td>MAJOR (1.x.x → 2.x.x)</td>
+                                <td>Mudança na API que quebra integrações</td>
+                                <td>Não compatível - requer migração</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3>Práticas Recomendadas de Versionamento:</h3>
+                <ul>
+                    <li><strong>Commits Semânticos:</strong> Use convenções como Conventional Commits</li>
+                    <li><strong>Tags no Git:</strong> Marque cada release com tag semântica</li>
+                    <li><strong>CHANGELOG:</strong> Mantenha registro claro de mudanças entre versões</li>
+                    <li><strong>Branch Strategy:</strong> Use Git Flow ou GitHub Flow para organização</li>
+                </ul>
+                
+                <div class="code-example">
+                    # Exemplo de Conventional Commits<br>
+                    feat: adicionar autenticação via Google OAuth<br>
+                    fix: corrigir validação de email no cadastro<br>
+                    docs: atualizar README com instruções de deploy<br>
+                    style: ajustar espaçamento no componente Header<br>
+                    refactor: simplificar lógica de cálculo de frete<br>
+                    test: adicionar testes para API de pagamentos<br>
+                    chore: atualizar dependências para versões seguras
+                </div>
+                
+                <h3>Estrutura de CHANGELOG Eficaz:</h3>
+                <div class="code-example">
+                    # Changelog<br>
+                    <br>
+                    ## [2.1.0] - 2024-01-15<br>
+                    ### Added<br>
+                    - Export de relatórios em formato PDF<br>
+                    - Filtro avançado por data de criação<br>
+                    <br>
+                    ### Changed<br>
+                    - Melhor performance na busca de produtos<br>
+                    - Atualizada biblioteca de gráficos para v4.2<br>
+                    <br>
+                    ### Fixed<br>
+                    - Correção no cálculo de impostos para PJ<br>
+                    - Ajuste no timeout de requests grandes<br>
+                    <br>
+                    ## [2.0.1] - 2024-01-08<br>
+                    ### Fixed<br>
+                    - Hotfix para vulnerabilidade CVE-2023-XXXXX<br>
+                    - Correção de crash no login com Facebook
+                </div>
+                
+                <div class="highlight">
+                    <p><strong>Dica Profissional:</strong> Automatize seu versionamento com ferramentas como semantic-release, que automaticamente determina a próxima versão baseada nos commits e publica releases no GitHub/GitLab.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin: 30px 0;">
+                <a href="../quizzes-detailed/quiz-module-13.html" style="display: inline-block; background: #27ae60; color: white; padding: 12px 25px; border-radius: 5px; text-decoration: none; font-weight: bold;">
+                    Fazer Quiz do Módulo 13
+                </a>
+            </div>
+            
+            <div class="video-section">
+                <h2>Recursos em Vídeo</h2>
+                <p>Para complementar seu aprendizado, recomendamos estes vídeos:</p>
+                
+                <div class="video-list">
+                    <div class="video-item">
+                        <div class="video-title">Manutenção de Software: Melhores Práticas</div>
+                        <div class="video-desc">Estratégias eficazes para manter sistemas em produção.</div>
+                    </div>
+                    
+                    <div class="video-item">
+                        <div class="video-title">Versionamento Semântico na Prática</div>
+                        <div class="video-desc">Como implementar SemVer em projetos reais.</div>
+                    </div>
+                    
+                    <div class="video-item">
+                        <div class="video-title">Segurança em Aplicações Web</div>
+                        <div class="video-desc">Checklist completo para manter sistemas seguros.</div>
+                    </div>
+                    
+                    <div class="video-item">
+                        <div class="video-title">Evolução de Software: Casos Reais</div>
+                        <div class="video-desc">Como produtos famosos evoluíram ao longo do tempo.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="metadata">
+                <h2>Metadados do Módulo</h2>
+                <div class="metadata-grid">
+                    <div class="metadata-item">
+                        <span class="metadata-label">Título do Módulo:</span>
+                        <span class="metadata-value">Suporte e Manutenção</span>
+                    </div>
+                    
+                    <div class="metadata-item">
+                        <span class="metadata-label">Duração Estimada:</span>
+                        <span class="metadata-value">45 minutos</span>
+                    </div>
+                    
+                    <div class="metadata-item">
+                        <span class="metadata-label">Nível de Dificuldade:</span>
+                        <span class="metadata-value">Avançado</span>
+                    </div>
+                    
+                    <div class="metadata-item">
+                        <span class="metadata-label">Pré-requisitos:</span>
+                        <span class="metadata-value">Módulo 12: Treinamento e Documentação</span>
+                    </div>
+                    
+                    <div class="metadata-item">
+                        <span class="metadata-label">Objetivos de Aprendizado:</span>
+                        <span class="metadata-value">Compreender o ciclo de vida pós-deploy, dominar processos de correção de bugs, implementar atualizações de segurança, gerenciar evolução de software e aplicar versionamento semântico</span>
+                    </div>
+                    
+                    <div class="metadata-item">
+                        <span class="metadata-label">Palavras-chave:</span>
+                        <span class="metadata-value">suporte, manutenção, bugs, segurança, versionamento, semver, evolução, correção, atualização</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Módulo 13 - Suporte e Manutenção | Curso de Iniciação em Tecnologia</p>
+        </footer>
+    </div>
+</body>
+</html>

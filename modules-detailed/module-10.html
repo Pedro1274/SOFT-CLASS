@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 10: Homologação</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #c0392b, #e74c3c);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .module-info {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .info-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        h2 {
+            color: #c0392b;
+            margin: 25px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #eaecef;
+        }
+        
+        h3 {
+            color: #e74c3c;
+            margin: 20px 0 10px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .highlight {
+            background-color: #fdedec;
+            border-left: 4px solid #c0392b;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .example-box {
+            background-color: #f9f9f9;
+            border: 1px solid #e1e1e1;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .homologation-process {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .process-card {
+            background: white;
+            border: 2px solid #e74c3c;
+            border-radius: 8px;
+            padding: 20px;
+            transition: transform 0.3s;
+        }
+        
+        .process-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .process-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .process-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+            text-align: center;
+        }
+        
+        .environment-section {
+            background-color: #fef5e7;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .checklist {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        
+        .check-icon {
+            color: #27ae60;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .criteria-section {
+            background-color: #e8f6f3;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .criteria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .criteria-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .criteria-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .testing-section {
+            background-color: #e8f4fc;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .test-scenario {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #3498db;
+        }
+        
+        .real-projects {
+            background-color: #f4ecf7;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .project-case {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .video-section {
+            background-color: #fdedec;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        
+        .video-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .video-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+        
+        .video-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .video-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+        
+        .video-desc {
+            font-size: 0.9rem;
+            color: #555;
+        }
+        
+        .metadata {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        
+        .metadata-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .metadata-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .metadata-label {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .metadata-value {
+            color: #555;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            border-top: 1px solid #eaecef;
+            margin-top: 30px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #c0392b;
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        @media (max-width: 768px) {
+            .module-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .video-list, .homologation-process, .criteria-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .navigation {
+            background: #34495e;
+            padding: 15px 0;
+            border-bottom: 1px solid #2c3e50;
+        }
+
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+        }
+
+        .nav-link {
+            color: #ecf0f1;
+            text-decoration: none;
+            padding: 8px 16px;
+            border: 1px solid #ecf0f1;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .nav-link:hover {
+            background: #ecf0f1;
+            color: #2c3e50;
+        }
+
+        .nav-info {
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+
+        .nav-module {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px 12px;
+            border-radius: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MÓDULO 10: Homologação</h1>
+            <div class="module-info">
+                <div class="info-item">Duração: ~45 minutos</div>
+                <div class="info-item">Dificuldade: Intermediário</div>
+                <div class="info-item">Público: Estudantes de tecnologia</div>
+            </div>
+        </header>
+
+        <nav class="navigation">
+            <div class="nav-container">
+                <a href="../index.html" class="nav-link">
+                    ← Voltar para a Página Inicial
+                </a>
+                <div class="nav-info">
+                    <span class="nav-module">Módulo 10</span>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="content">
+            <h2>O que é Homologação</h2>
+            <p>A homologação é a fase final de testes onde o cliente ou usuário final valida se o sistema atende aos requisitos estabelecidos e está pronto para ser colocado em produção. É a "aprovação final" antes do sistema ir ao ar.</p>
+            
+            <div class="highlight">
+                <p><strong>Analogia:</strong> Pense na homologação como a prova final de um carro antes da entrega ao cliente. O fabricante já testou todas as peças (testes unitários), montou o carro (testes de integração) e fez testes de qualidade (testes de sistema). Agora, o cliente faz um test drive para confirmar que tudo está conforme combinado.</p>
+            </div>
+            
+            <h3>Objetivos da homologação:</h3>
+            <ul>
+                <li><strong>Validação do cliente:</strong> Confirmar que o sistema atende às necessidades reais</li>
+                <li><strong>Verificação de requisitos:</strong> Garantir que todos os requisitos foram implementados</li>
+                <li><strong>Teste em ambiente real:</strong> Validar o sistema em condições similares às de produção</li>
+                <li><strong>Aprovação formal:</strong> Obter o "OK" oficial para liberar em produção</li>
+                <li><strong>Identificação de ajustes finais:</strong> Encontrar pequenos ajustes necessários</li>
+            </ul>
+            
+            <div class="homologation-process">
+                <div class="process-card">
+                    <div class="process-icon">📋</div>
+                    <div class="process-title">Planejamento</div>
+                    <p>Definir escopo, critérios de aceite e responsáveis pela homologação</p>
+                </div>
+                
+                <div class="process-card">
+                    <div class="process-icon">🛠️</div>
+                    <div class="process-title">Preparação</div>
+                    <p>Configurar ambiente, dados de teste e checklist de validação</p>
+                </div>
+                
+                <div class="process-card">
+                    <div class="process-icon">🧪</div>
+                    <div class="process-title">Execução</div>
+                    <p>Cliente testa o sistema seguindo cenários pré-definidos</p>
+                </div>
+                
+                <div class="process-card">
+                    <div class="process-icon">✅</div>
+                    <div class="process-title">Aprovação</div>
+                    <p>Formalização da aceitação e liberação para produção</p>
+                </div>
+            </div>
+            
+            <h2>Preparando o Ambiente de Homologação</h2>
+            <p>O ambiente de homologação deve ser o mais similar possível ao ambiente de produção para garantir que os testes sejam válidos e representativos.</p>
+            
+            <div class="environment-section">
+                <h3>Checklist de Preparação do Ambiente:</h3>
+                
+                <div class="checklist">
+                    <div class="check-item">
+                        <span class="check-icon">✓</span>
+                        <div>
+                            <strong>Infraestrutura similar à produção</strong>
+                            <p>Mesmo tipo de servidor, banco de dados e configurações</p>
+                        </div>
+                    </div>
+                    
+                    <div class="check-item">
+                        <span class="check-icon">✓</span>
+                        <div>
+                            <strong>Dados de teste realistas</strong>
+                            <p>Dados que simulam situações reais de uso</p>
+                        </div>
+                    </div>
+                    
+                    <div class="check-item">
+                        <span class="check-icon">✓</span>
+                        <div>
+                            <strong>Configurações idênticas</strong>
+                            <p>Mesmas configurações de segurança, performance e integrações</p>
+                        </div>
+                    </div>
+                    
+                    <div class="check-item">
+                        <span class="check-icon">✓</span>
+                        <div>
+                            <strong>Acesso preparado</strong>
+                            <p>Usuários de teste com perfis e permissões definidas</p>
+                        </div>
+                    </div>
+                    
+                    <div class="check-item">
+                        <span class="check-icon">✓</span>
+                        <div>
+                            <strong>Documentação atualizada</strong>
+                            <p>Manuais e instruções de uso disponíveis</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>Diferenças entre Ambientes:</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Ambiente</th>
+                            <th>Propósito</th>
+                            <th>Quem Usa</th>
+                            <th>Dados</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Desenvolvimento</strong></td>
+                            <td>Codificar e testar unidades</td>
+                            <td>Desenvolvedores</td>
+                            <td>Dados fictícios</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Testes</strong></td>
+                            <td>Testes automatizados e integração</td>
+                            <td>QA Engineers</td>
+                            <td>Dados de teste</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Homologação</strong></td>
+                            <td>Validação do cliente</td>
+                            <td>Clientes/Usuários</td>
+                            <td>Dados realistas</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Produção</strong></td>
+                            <td>Uso real do sistema</td>
+                            <td>Usuários finais</td>
+                            <td>Dados reais</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="example-box">
+                <p><strong>Exemplo Prático:</strong> Para um sistema de e-commerce, o ambiente de homologação deve incluir:</p>
+                <ul>
+                    <li>Servidor com mesma configuração do servidor de produção</li>
+                    <li>Banco de dados com produtos, usuários e pedidos de teste</li>
+                    <li>Integração com APIs de pagamento em modo sandbox</li>
+                    <li>Configuração de email para testes (não envia emails reais)</li>
+                    <li>Acesso para diferentes tipos de usuários (cliente, admin, vendedor)</li>
+                </ul>
+            </div>
+            
+            <h2>Critérios de Aceite</h2>
+            <p>Critérios de aceite são condições específicas e mensuráveis que devem ser atendidas para que uma funcionalidade seja considerada "pronta" e aceita pelo cliente.</p>
+            
+            <div class="criteria-section">
+                <div class="criteria-grid">
+                    <div class="criteria-card">
+                        <div class="criteria-icon">🎯</div>
+                        <strong>Específicos</strong>
+                        <p>Claros e sem ambiguidades</p>
+                    </div>
+                    
+                    <div class="criteria-card">
+                        <div class="criteria-icon">📏</div>
+                        <strong>Mensuráveis</strong>
+                        <p>Podem ser verificados objetivamente</p>
+                    </div>
+                    
+                    <div class="criteria-card">
+                        <div class="criteria-icon">✅</div>
+                        <strong>Testáveis</strong>
+                        <p>Podem ser validados com testes</p>
+                    </div>
+                    
+                    <div class="criteria-card">
+                        <div class="criteria-icon">🎪</div>
+                        <strong>Relevantes</strong>
+                        <p>Importantes para o negócio</p>
+                    </div>
+                </div>
+                
+                <h3>Exemplos de Critérios de Aceite:</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Funcionalidade</th>
+                            <th>Critério de Aceite</th>
+                            <th>Como Validar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Login do usuário</strong></td>
+                            <td>Usuário deve conseguir fazer login em menos de 3 segundos</td>
+                            <td>Cronometrar tempo de login</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Busca de produtos</strong></td>
+                            <td>Sistema deve retornar resultados em menos de 2 segundos</td>
+                            <td>Testar com diferentes termos de busca</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Processamento de pedido</strong></td>
+                            <td>Email de confirmação deve ser enviado em até 1 minuto</td>
+                            <td>Verificar recebimento do email</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Relatório de vendas</strong></td>
+                            <td>Relatório deve incluir todos os pedidos do mês atual</td>
+                            <td>Comparar com base de dados</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="highlight">
+                    <p><strong>Dica Importante:</strong> Os critérios de aceite devem ser definidos ANTES do desenvolvimento começar. Isso evita discussões e mal-entendidos durante a homologação.</p>
+                </div>
+            </div>
+            
+            <h2>Teste de Homologação na Prática</h2>
+            <p>Os testes de homologação são executados pelo cliente ou usuários finais, seguindo cenários que simulam o uso real do sistema.</p>
+            
+            <div class="testing-section">
+                <h3>Cenários de Teste Comuns:</h3>
+                
+                <div class="test-scenario">
+                    <strong>Cenário: Processo completo de compra</strong>
+                    <ol>
+                        <li>Acessar o site como usuário não logado</li>
+                        <li>Buscar por um produto específico</li>
+                        <li>Adicionar produto ao carrinho</li>
+                        <li>Fazer login na conta</li>
+                        <li>Finalizar compra com cartão de crédito</li>
+                        <li>Verificar confirmação de pedido</li>
+                        <li>Confirmar recebimento do email</li>
+                    </ol>
+                </div>
+                
+                <div class="test-scenario">
+                    <strong>Cenário: Gestão de usuários (admin)</strong>
+                    <ol>
+                        <li>Fazer login como administrador</li>
+                        <li>Acessar painel de gestão de usuários</li>
+                        <li>Criar novo usuário</li>
+                        <li>Editar permissões do usuário</li>
+                        <li>Desativar usuário</li>
+                        <li>Gerar relatório de usuários</li>
+                    </ol>
+                </div>
+                
+                <h3>Checklist de Validação:</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Área</th>
+                            <th>Itens para Validar</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Funcionalidades</strong></td>
+                            <td>Todas as funcionalidades implementadas conforme requisitos</td>
+                            <td>□ Aprovado □ Pendente</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Usabilidade</strong></td>
+                            <td>Interface intuitiva e fácil de usar</td>
+                            <td>□ Aprovado □ Pendente</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Performance</strong></td>
+                            <td>Sistema responde dentro dos tempos esperados</td>
+                            <td>□ Aprovado □ Pendente</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dados</strong></td>
+                            <td>Informações são salvas e recuperadas corretamente</td>
+                            <td>□ Aprovado □ Pendente</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Integrações</strong></td>
+                            <td>Todas as integrações funcionam conforme esperado</td>
+                            <td>□ Aprovado □ Pendente</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <h2>Homologação em Projetos Reais</h2>
+            <p>A homologação varia conforme o tipo de projeto, metodologia e características do cliente.</p>
+            
+            <div class="real-projects">
+                <div class="project-case">
+                    <strong>Caso 1: Sistema Corporativo Interno</strong>
+                    <p><em>Projeto: Sistema de gestão de projetos para uma empresa de consultoria</em></p>
+                    <ul>
+                        <li><strong>Duração:</strong> 2 semanas de homologação</li>
+                        <li><strong>Participantes:</strong> 5 usuários-chave de diferentes departamentos</li>
+                        <li><strong>Processo:</strong> Testes guiados com checklist + testes livres</li>
+                        <li><strong>Resultado:</strong> 92% de aprovação na primeira rodada</li>
+                        <li><strong>Ajustes:</strong> Correção de 3 bugs críticos e 8 melhorias de usabilidade</li>
+                    </ul>
+                </div>
+                
+                <div class="project-case">
+                    <strong>Caso 2: E-commerce para Varejo</strong>
+                    <p><em>Projeto: Loja virtual para rede de varejo</em></p>
+                    <ul>
+                        <li><strong>Duração:</strong> 3 semanas de homologação</li>
+                        <li><strong>Participantes:</strong> Equipe de marketing, atendimento e gerência</li>
+                        <li><strong>Processo:</strong> Testes de todos os fluxos de compra + painel administrativo</li>
+                        <li><strong>Resultado:</strong> 5 rodadas de teste até aprovação total</li>
+                        <li><strong>Desafio:</strong> Integração com sistema legado de estoque</li>
+                    </ul>
+                </div>
+                
+                <h3>Lições Aprendidas em Homologações:</h3>
+                <ul>
+                    <li><strong>Comunicação é fundamental:</strong> Mantenha canal aberto com o cliente durante toda a homologação</li>
+                    <li><strong>Documente tudo:</strong> Registre todos os feedbacks, aprovações e pendências</li>
+                    <li><strong>Seja proativo:</strong> Antecipe possíveis dúvidas e prepare materiais de apoio</li>
+                    <li><strong>Estabeleça prazos claros:</strong> Defina datas para feedback e decisões</li>
+                    <li><strong>Celebre as vitórias:</strong> Reconheça quando critérios são atendidos com sucesso</li>
+                </ul>
+                
+                <div class="example-box">
+                    <p><strong>Checklist Final de Homologação:</strong></p>
+                    <ol>
+                        <li>✅ Todos os critérios de aceite foram atendidos</li>
+                        <li>✅ Cliente confirmou por escrito a aprovação</li>
+                        <li>✅ Ambiente de produção está preparado</li>
+                        <li>✅ Plano de implantação definido</li>
+                        <li>✅ Suporte pós-implantação organizado</li>
+                        <li>✅ Documentação final entregue</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin: 30px 0;">
+                <a href="../quizzes-detailed/quiz-module-10.html" style="display: inline-block; background: #27ae60; color: white; padding: 12px 25px; border-radius: 5px; text-decoration: none; font-weight: bold;">
+                    Fazer Quiz do Módulo 10
+                </a>
+            </div>
+            
+            <div class="video-section">
+                <h2>Recursos em Vídeo</h2>
+                <p>Para complementar seu aprendizado, recomendamos estes vídeos:</p>
+                
+                <div class="video-list">
+                    <div class="video-item">
+                        <div class="video-title">Homologação: Do Conceito à Prática</div>
+                        <div class="video-desc">Entenda o processo completo de homologação em projetos de software.</div>
+                    </div>
+                    
+                    <div class="video-item">
+                        <div class="video-title">Critérios de Aceite que Funcionam</div>
+                        <div class="video-desc">Como definir critérios claros e mensuráveis para homologação.</div>
+                    </div>
+                    
+                    <div class="video-item">
+                        <div class="video-title">Preparando Ambiente de Homologação</div>
+                        <div class="video-desc">Configuração prática de ambientes para testes do cliente.</div>
+                    </div>
+                    
+                    <div class="video-item">
+                        <div class="video-title">Casos Reais: Homologação que Deu Certo</div>
+                        <div class="video-desc">Experiências práticas de homologação em diferentes tipos de projeto.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="metadata">
+                <h2>Metadados do Módulo</h2>
+                <div class="metadata-grid">
+                    <div class="metadata-item">
+                        <span class="metadata-label">Título do Módulo:</span>
+                        <span class="metadata-value">Homologação</span>
+                    </div>
+                    
+                    <div class="metadata-item">
+                        <span class="metadata-label">Duração Estimada:</span>
+                        <span class="metadata-value">45 minutos</span>
+                    </div>
+                    
+                    <div class="metadata-item">
+                        <span class="metadata-label">Nível de Dificuldade:</span>
+                        <span class="metadata-value">Intermediário</span>
+                    </div>
+                    
+                    <div class="metadata-item">
+                        <span class="metadata-label">Pré-requisitos:</span>
+                        <span class="metadata-value">Módulo 9: Testes e Qualidade</span>
+                    </div>
+                    
+                    <div class="metadata-item">
+                        <span class="metadata-label">Objetivos de Aprendizado:</span>
+                        <span class="metadata-value">Compreender o conceito de homologação, preparar ambientes de homologação, definir critérios de aceite, executar testes de homologação e aplicar conhecimentos em projetos reais</span>
+                    </div>
+                    
+                    <div class="metadata-item">
+                        <span class="metadata-label">Palavras-chave:</span>
+                        <span class="metadata-value">homologação, aceitação, critérios de aceite, ambiente de homologação, validação do cliente, aprovação</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Módulo 10 - Homologação | Curso de Iniciação em Tecnologia</p>
+        </footer>
+    </div>
+</body>
+</html>

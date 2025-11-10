@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso Completo de Tecnologia - 15 Módulos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #7209b7;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --warning: #f72585;
+            --card-bg: #ffffff;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 80px 0 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, #e0e7ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            font-weight: 300;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 15px 25px;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Navigation */
+        .nav-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 80px 0;
+            background: var(--light);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            font-size: 1.2rem;
+            color: #6c757d;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Modules Grid */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .module-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .module-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .module-header {
+            padding: 25px 25px 15px;
+            position: relative;
+            background: linear-gradient(135deg, var(--color), var(--color-dark));
+            color: white;
+        }
+
+        .module-badge {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+
+        .module-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .module-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .module-number {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 10px;
+        }
+
+        .module-body {
+            padding: 25px;
+        }
+
+        .module-description {
+            color: #6c757d;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .module-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            font-size: 0.9rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #6c757d;
+        }
+
+        .module-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex: 1;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color), var(--color-dark));
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #495057;
+            border: 1px solid #e9ecef;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--color-dark), var(--color));
+        }
+
+        .btn-secondary:hover {
+            background: #e9ecef;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #adb5bd;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .modules-grid {
+                grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+            }
+            
+            h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .modules-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .stats {
+                gap: 15px;
+            }
+            
+            .stat-item {
+                padding: 12px 20px;
+            }
+            
+            .nav-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-links {
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .module-actions {
+                flex-direction: column;
+            }
+            
+            .stats {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .stat-item {
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1>Curso Completo de Tecnologia</h1>
+                <p class="subtitle">Domine o desenvolvimento de software através de 15 módulos cuidadosamente elaborados, do básico ao avançado</p>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">15</div>
+                        <div class="stat-label">Módulos Completos</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">Horas de Conteúdo</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Níveis de Dificuldade</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <div class="nav-container">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <i class="fas fa-laptop-code"></i>
+                    <span>SoftClass</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#modules">Módulos</a>
+                    <a href="#contact">Contato</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <div class="section-title" id="modules">
+                <h2>Explore Nossos Módulos</h2>
+                <p>Uma jornada completa do iniciante ao desenvolvedor profissional</p>
+            </div>
+
+            <div class="modules-grid" id="modules-container">
+                <!-- Os módulos serão inseridos aqui via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>SoftClass</h3>
+                    <p>Oferecendo educação de qualidade em tecnologia. Nosso objetivo é formar desenvolvedores completos e preparados para o mercado.</p>
+                    <div class="social-links">
+                        <a href="https://github.com/Pedro1274" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://www.instagram.com/ruandev.studio/?utm_source=ig_web_button_share_sheet" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Links Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#modules">Todos os Módulos</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contato</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> ruandevstudio@gmail.com</li>
+                        <li><i class="fas fa-phone"></i> (86) 9 8887-8003</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Teresina, PI</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 TechMaster. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dados dos módulos
+            const modules = [
+                {
+                    id: 1,
+                    title: "Introdução ao Desenvolvimento de Software",
+                    number: "Módulo 1",
+                    description: "Conceitos fundamentais, tipos de software e ciclo de vida do desenvolvimento. Entenda o que é programação e como os softwares são criados.",
+                    duration: "30 min",
+                    difficulty: "Iniciante",
+                    icon: "🚀",
+                    color: "#3498db",
+                    colorDark: "#2980b9"
+                },
+                {
+                    id: 2,
+                    title: "Metodologias de Desenvolvimento",
+                    number: "Módulo 2",
+                    description: "Waterfall, Ágil, Scrum e outras metodologias de gestão de projetos. Aprenda a organizar e gerenciar projetos de software.",
+                    duration: "40 min",
+                    difficulty: "Iniciante",
+                    icon: "📊",
+                    color: "#9b59b6",
+                    colorDark: "#8e44ad"
+                },
+                {
+                    id: 3,
+                    title: "Ferramentas de Desenvolvimento",
+                    number: "Módulo 3",
+                    description: "IDEs, editores de código, controle de versão e ferramentas essenciais. Configure seu ambiente de desenvolvimento profissional.",
+                    duration: "35 min",
+                    difficulty: "Iniciante",
+                    icon: "🛠️",
+                    color: "#e74c3c",
+                    colorDark: "#c0392b"
+                },
+                {
+                    id: 4,
+                    title: "Engenharia de Requisitos",
+                    number: "Módulo 4",
+                    description: "Levantamento, análise e documentação de requisitos de software. Aprenda a capturar e especificar o que o software deve fazer.",
+                    duration: "45 min",
+                    difficulty: "Intermediário",
+                    icon: "📋",
+                    color: "#e67e22",
+                    colorDark: "#d35400"
+                },
+                {
+                    id: 5,
+                    title: "Análise de Viabilidade",
+                    number: "Módulo 5",
+                    description: "Avaliação técnica, econômica e operacional de projetos de software. Determine se um projeto vale a pena antes de começar.",
+                    duration: "40 min",
+                    difficulty: "Intermediário",
+                    icon: "💰",
+                    color: "#1abc9c",
+                    colorDark: "#16a085"
+                },
+                {
+                    id: 6,
+                    title: "Planejamento de Projeto",
+                    number: "Módulo 6",
+                    description: "Definição de escopo, cronograma, recursos e riscos do projeto. Planeje seu projeto de software com eficiência.",
+                    duration: "50 min",
+                    difficulty: "Intermediário",
+                    icon: "📅",
+                    color: "#34495e",
+                    colorDark: "#2c3e50"
+                },
+                {
+                    id: 7,
+                    title: "Design e Arquitetura",
+                    number: "Módulo 7",
+                    description: "Padrões de arquitetura, design de software e UML. Crie estruturas sólidas e escaláveis para seus projetos.",
+                    duration: "55 min",
+                    difficulty: "Intermediário",
+                    icon: "🏗️",
+                    color: "#f39c12",
+                    colorDark: "#e67e22"
+                },
+                {
+                    id: 8,
+                    title: "Implementação (Codificação)",
+                    number: "Módulo 8",
+                    description: "Boas práticas, princípios SOLID, APIs e versionamento com Git. Escreva código limpo, eficiente e bem estruturado.",
+                    duration: "45 min",
+                    difficulty: "Intermediário",
+                    icon: "💻",
+                    color: "#2980b9",
+                    colorDark: "#2471a3"
+                },
+                {
+                    id: 9,
+                    title: "Testes e Qualidade",
+                    number: "Módulo 9",
+                    description: "Tipos de testes, pirâmide de testes e garantia de qualidade. Garanta que seu software funcione corretamente.",
+                    duration: "45 min",
+                    difficulty: "Intermediário",
+                    icon: "🧪",
+                    color: "#8e44ad",
+                    colorDark: "#7d3c98"
+                },
+                {
+                    id: 10,
+                    title: "Integração e Entrega",
+                    number: "Módulo 10",
+                    description: "CI/CD, integração contínua e entrega de software. Automatize processos e entregue valor continuamente.",
+                    duration: "40 min",
+                    difficulty: "Avançado",
+                    icon: "🔄",
+                    color: "#27ae60",
+                    colorDark: "#229954"
+                },
+                {
+                    id: 11,
+                    title: "Deploy (Entrega)",
+                    number: "Módulo 11",
+                    description: "Estratégias de deploy, ambientes e rollback. Coloque seu software em produção com segurança.",
+                    duration: "35 min",
+                    difficulty: "Avançado",
+                    icon: "🚀",
+                    color: "#d35400",
+                    colorDark: "#ba4a00"
+                },
+                {
+                    id: 12,
+                    title: "Treinamento e Documentação",
+                    number: "Módulo 12",
+                    description: "Documentação técnica, de usuário e treinamento. Crie documentação que realmente ajuda desenvolvedores e usuários.",
+                    duration: "45 min",
+                    difficulty: "Avançado",
+                    icon: "📚",
+                    color: "#2c3e50",
+                    colorDark: "#1a252f"
+                },
+                {
+                    id: 13,
+                    title: "Manutenção e Suporte",
+                    number: "Módulo 13",
+                    description: "Tipos de manutenção, suporte e evolução do software. Mantenha seu software saudável após o lançamento.",
+                    duration: "40 min",
+                    difficulty: "Avançado",
+                    icon: "🔧",
+                    color: "#7f8c8d",
+                    colorDark: "#616a6b"
+                },
+                {
+                    id: 14,
+                    title: "Carreira em Desenvolvimento",
+                    number: "Módulo 14",
+                    description: "Roadmaps, especializações e crescimento profissional. Planeje e desenvolva sua carreira em tecnologia.",
+                    duration: "50 min",
+                    difficulty: "Avançado",
+                    icon: "🎯",
+                    color: "#c0392b",
+                    colorDark: "#a93226"
+                },
+                {
+                    id: 15,
+                    title: "Portfólio e GitHub",
+                    number: "Módulo 15",
+                    description: "Criação de portfólio, GitHub profissional e presença online. Mostre seu trabalho e conecte-se com oportunidades.",
+                    duration: "45 min",
+                    difficulty: "Avançado",
+                    icon: "💼",
+                    color: "#24292e",
+                    colorDark: "#1a1e22"
+                }
+            ];
+
+            // Elementos da interface
+            const modulesContainer = document.getElementById('modules-container');
+
+            // Função para renderizar os módulos
+            function renderModules() {
+                modulesContainer.innerHTML = '';
+                
+                modules.forEach(module => {
+                    const moduleCard = document.createElement('div');
+                    moduleCard.className = 'module-card';
+                    
+                    moduleCard.innerHTML = `
+                        <div class="module-header" style="--color: ${module.color}; --color-dark: ${module.colorDark}">
+                            <div class="module-badge">${module.difficulty}</div>
+                            <div class="module-icon">${module.icon}</div>
+                            <div class="module-title">${module.title}</div>
+                            <div class="module-number">${module.number}</div>
+                        </div>
+                        <div class="module-body">
+                            <div class="module-description">${module.description}</div>
+                            <div class="module-meta">
+                                <div class="meta-item">
+                                    <i class="far fa-clock"></i>
+                                    <span>${module.duration}</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-signal"></i>
+                                    <span>${module.difficulty}</span>
+                                </div>
+                            </div>
+                            <div class="module-actions">
+                                <a href="modules-detailed/module-${module.id}.html" class="btn btn-primary" style="--color: ${module.color}; --color-dark: ${module.colorDark}">
+                                    <i class="fas fa-book-open"></i> Ler Módulo
+                                </a>
+                                <a href="../quizzes-detailed/quiz-module-${module.id}.html" class="btn btn-secondary">
+                                    <i class="fas fa-puzzle-piece"></i> Fazer Quiz
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                    
+                    modulesContainer.appendChild(moduleCard);
+                });
+            }
+
+            // Inicializar a interface
+            renderModules();
+        });
+    </script>
+</body>
+</html>
